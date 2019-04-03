@@ -7,7 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./main-content.component.css']
 })
 export class MainContentComponent implements OnInit {
-  // variables that hold button text values RHS = Right Hand Side, LHS = Left Hand Side
+  // variables that hold user selected currencies to be converted RHS = Right Hand Side, LHS = Left Hand Side
   conversionRHS = {
     country: 'USA',
     denomination: 'USD',
@@ -27,8 +27,8 @@ export class MainContentComponent implements OnInit {
   // array that contains currency objects
   currencies: Array<any> = [];
 
-  resultL: number;
-  resultR: number;
+  resultL: number | string;
+  resultR: number | string;
 
   errorMessage: string;
 
@@ -44,28 +44,37 @@ export class MainContentComponent implements OnInit {
       switch (this.conversionRHS.country) {
         case 'USA':
           this.resultR = event.target.value * this.conversionLHS.USA;
+          this.resultR = this.resultR.toFixed(2);
           break;
         case 'UK':
           this.resultR = event.target.value * this.conversionLHS.UK;
+          this.resultR = this.resultR.toFixed(2);
           break;
         case 'EU':
           this.resultR = event.target.value * this.conversionLHS.EU;
+          this.resultR = this.resultR.toFixed(2);
           break;
       }
+
 
     }
     if (event.target.name === 'inputRHS') {
       switch (this.conversionLHS.country) {
         case 'USA':
           this.resultL = event.target.value * this.conversionRHS.USA;
+          this.resultL = this.resultL.toFixed(2);
           break;
         case 'UK':
           this.resultL = event.target.value * this.conversionRHS.UK;
+          this.resultL = this.resultL.toFixed(2);
           break;
         case 'EU':
           this.resultL = event.target.value * this.conversionRHS.EU;
+          this.resultL = this.resultL.toFixed(2);
           break;
       }
+
+
     }
   }
 
@@ -102,7 +111,7 @@ export class MainContentComponent implements OnInit {
     ];
   }
 
-  // functions that give the buttons a text value
+  // functions that sets conversion variables above based on user selection
   assignCurrencyR(currency: any) {
     this.conversionRHS.country = currency.country;
     this.conversionRHS.symbol = currency.symbol;
@@ -116,7 +125,7 @@ export class MainContentComponent implements OnInit {
 
 
 
-  assignCurrencyL(currency: any, ) {
+  assignCurrencyL(currency: any) {
     this.conversionLHS.country = currency.country;
     this.conversionLHS.symbol = currency.symbol;
     this.conversionLHS.denomination = currency.denomination;
