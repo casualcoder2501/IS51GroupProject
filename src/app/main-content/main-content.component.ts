@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 
 @Component({
@@ -110,17 +110,21 @@ export class MainContentComponent implements OnInit {
     this.conversionRHS.EU = currency.EU;
     this.conversionRHS.UK = currency.UK;
     this.conversionRHS.USA = currency.USA;
+    this.resultL = null;
+    this.resultR = null;
   }
 
 
 
-  assignCurrencyL(currency: any,) {
+  assignCurrencyL(currency: any, ) {
     this.conversionLHS.country = currency.country;
     this.conversionLHS.symbol = currency.symbol;
     this.conversionLHS.denomination = currency.denomination;
     this.conversionLHS.EU = currency.EU;
     this.conversionLHS.UK = currency.UK;
     this.conversionLHS.USA = currency.USA;
+    this.resultL = null;
+    this.resultR = null;
   }
 
 
