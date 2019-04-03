@@ -1,1 +1,67 @@
-/* You can add global styles to this file, and also import other style files */
+*{
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+}
+
+html,
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.main-page {
+    display: grid;
+    grid-template-rows: 3fr 9fr 3fr;
+    height: 100%;
+}
+.row-one {
+    display: grid;
+    grid-template-columns: 4fr 10fr 4fr;
+    border: black 1px solid;
+    height: 100%;
+}
+.row-two {
+    display: flex;
+    border: black 1px solid;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-flow:row wrap;
+}
+.row-three {
+    display: grid;
+    grid-template-columns: 3fr 10fr;
+    border: black 1px solid;
+    height: 100%;
+}
+.padding{
+    padding: 12px;
+    margin:5px;
+    border: black 1px solid;
+}
+
+.conversion-box {
+    border-radius: 10px;
+    border: black 1px solid;
+    height: 5vh;
+    margin: 10px;
+    padding: 4px;
+}
+
+.button-holder {
+    display: flex;
+    width: 100%;
+    height: 10%;
+    align-items: center;
+    justify-content: center;
+}
+.button {
+    margin: 5px;
+
+}
+.input-style {
+    margin: 5px;
+    border: none;
+}

@@ -1,0 +1,43 @@
+<div class="row-two">
+  <div class="conversion-box">
+
+    <!-- DROP DOWN BUTTON -->
+    <div class="btn-group" dropdown>
+      <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle" aria-controls="dropdown-basic">
+        {{conversionLHS.country}} {{conversionLHS.symbol}} <span class="caret"></span>
+      </button>
+      <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+        <li (click)="assignCurrencyL(currency)" *ngFor="let currency of currencies; let i = index" role="menuitem"><a class="dropdown-item" href="#">{{currency.country}}-{{currency.symbol}}</a></li>
+      </ul>
+    </div>
+   <!-- INPUT FIELD FOR CONVERSION -->
+      <input class="input-style" [value]="resultL" (keyup)="convert($event)" placeholder="type amount here" type="number"  name="inputLHS">
+  </div>
+  <div class="conversion-box">
+
+     <!-- DROP DOWN BUTTON -->
+    <div class="btn-group" dropdown>
+      <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle" aria-controls="dropdown-basic">
+        {{conversionRHS.country}} {{conversionRHS.symbol}}<span class="caret"></span>
+      </button>
+      <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+        <li (click)="assignCurrencyR(currency)" *ngFor="let currency of currencies; let i = index" role="menuitem"><a class="dropdown-item" href="#">{{currency.country}}-{{currency.symbol}}</a></li>
+      </ul>
+    </div>
+    <!-- INPUT FIELD FOR CONVERSION -->
+      <input class="input-style" [value]="resultR" (keyup)="convert($event)" placeholder="type amount here" type="number" name="inputRHS">
+    
+  </div>
+
+  <div class="button-holder">
+    <button class="button">
+      This button
+    </button>
+    <button class="button">
+      This button
+    </button>
+    <button class="button">
+      This button
+    </button>
+  </div>
+</div>
