@@ -33,7 +33,7 @@
     <p style="font-family:Arial;font-weight: bold">Decimal Places</p>
     <div class="line-break"></div>
       <button (click)="decrease()" type="button" class="btn btn-danger">-</button>
-      <input class="input-decimal" [value]="decimalPlaces"> 
+      <input class="input-decimal" [(ngModel)]="decimalPlaces"> 
       <button (click)="increase()" type="button" class="btn btn-success">+</button>
 </div>
 </div>
