@@ -4,30 +4,31 @@
     <!-- DROP DOWN BUTTON -->
     <div class="btn-group" dropdown>
       <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle" aria-controls="dropdown-basic">
-        {{conversionLHS.country}} {{conversionLHS.symbol}} <span class="caret"></span>
+        {{mainframe.conversionLHS.country}} {{mainframe.conversionLHS.symbol}} <span class="caret"></span>
       </button>
       <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
         <li (click)="assignCurrencyL(currency)" *ngFor="let currency of currencies; let i = index" role="menuitem"><a class="dropdown-item" href="#">{{currency.country}}-{{currency.symbol}}</a></li>
       </ul>
     </div>
    <!-- INPUT FIELD FOR CONVERSION -->
-      <input class="input-style" [value]="resultL" (keyup)="convert($event)" placeholder="type amount here" type="number"  name="inputLHS">
+      <input class="input-style" [(ngModel)]="resultL" name="inputLeft" (click)="clear(resultLeft.name)" (keyup)="convert(resultLeft.name, resultLeft.value)" type="number" placeholder="type amount here" #resultLeft>
   </div>
   <div class="conversion-box">
 
      <!-- DROP DOWN BUTTON -->
     <div class="btn-group" dropdown>
       <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle" aria-controls="dropdown-basic">
-        {{conversionRHS.country}} {{conversionRHS.symbol}}<span class="caret"></span>
+        {{mainframe.conversionRHS.country}} {{mainframe.conversionRHS.symbol}}<span class="caret"></span>
       </button>
       <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
         <li (click)="assignCurrencyR(currency)" *ngFor="let currency of currencies; let i = index" role="menuitem"><a class="dropdown-item" href="#">{{currency.country}}-{{currency.symbol}}</a></li>
       </ul>
     </div>
     <!-- INPUT FIELD FOR CONVERSION -->
-      <input class="input-style" [value]="resultR" (keyup)="convert($event)" placeholder="type amount here" type="number" name="inputRHS">
+      <input class="input-style" [(ngModel)]="resultR" name="inputRight" (click)="clear(resultRight.name)" (keyup)="convert(resultRight.name, resultRight.value)" type="number" placeholder="type amount here" #resultRight>
     
   </div>
+<<<<<<< HEAD
 
   <div class="button-holder">
     <button (click)=saveConversion() class="button">
@@ -40,4 +41,14 @@
       This button
     </button>
   </div>
+=======
+  <div class="line-break"></div>
+  <div class="decimal-box">
+    <p style="font-family:Arial;font-weight: bold">Decimal Places</p>
+    <div class="line-break"></div>
+      <button (click)="decrease()" type="button" class="btn btn-danger">-</button>
+      <input class="input-decimal" [value]="decimalPlaces"> 
+      <button (click)="increase()" type="button" class="btn btn-success">+</button>
+</div>
+>>>>>>> upstream/development
 </div>

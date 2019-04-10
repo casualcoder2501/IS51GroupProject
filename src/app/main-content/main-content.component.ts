@@ -1,5 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { MainframeService } from '../mainframe.service';
 
+interface ICurrencies {
+  country: string;
+  denomination: string;
+  symbol: string;
+  UK: number;
+  EU: number;
+  USA: number;
+}
 
 @Component({
   selector: 'app-main-content',
@@ -7,6 +16,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-content.component.css']
 })
 export class MainContentComponent implements OnInit {
+<<<<<<< HEAD
   // variables that hold button text values RHS = Right Hand Side, LHS = Left Hand Side
   conversionRHS = {
     country: 'USA',
@@ -27,23 +37,28 @@ export class MainContentComponent implements OnInit {
   // array that contains currency objects
   currencies: Array<any> = [];
   saveConversionArray: Array<string> = [];
+=======
+>>>>>>> upstream/development
 
-  resultL: number;
-  resultR: number;
+  // array that contains currency objects
+  currencies: Array<ICurrencies> = [];
+  resultL: string;
+  resultR: string;
+  decimalPlaces = 2;
 
-  errorMessage: string;
-
-  constructor() { }
+  constructor(public mainframe: MainframeService) { }
 
   ngOnInit() {
     this.loadCurrencies();
   }
-  // Event handler for catching the user input and converting
-  convert(event: any) {
 
-    if (event.target.name === 'inputLHS') {
-      switch (this.conversionRHS.country) {
+  // Event handler for catching the user input and converting
+  convert(name: string, value: number) {
+
+    if (name === 'inputLeft') {
+      switch (this.mainframe.conversionRHS.country) {
         case 'USA':
+<<<<<<< HEAD
           this.resultR = event.target.value * this.conversionLHS.USA;
           this.resultL = event.target.value
           break;
@@ -54,13 +69,26 @@ export class MainContentComponent implements OnInit {
         case 'EU':
           this.resultR = event.target.value * this.conversionLHS.EU;
           this.resultL = event.target.value
+=======
+          this.mainframe.resultRightHandSide = value * this.mainframe.conversionLHS.USA;
+          this.mainframe.resultLeftHandSide = value;
+          break;
+        case 'UK':
+          this.mainframe.resultRightHandSide = value * this.mainframe.conversionLHS.UK;
+          this.mainframe.resultLeftHandSide = value;
+          break;
+        case 'EU':
+          this.mainframe.resultRightHandSide = value * this.mainframe.conversionLHS.EU;
+          this.mainframe.resultLeftHandSide = value;
+>>>>>>> upstream/development
           break;
       }
+      this.resultR = this.mainframe.resultRightHandSide.toFixed(this.decimalPlaces);
 
-    }
-    if (event.target.name === 'inputRHS') {
-      switch (this.conversionLHS.country) {
+    } else if (name === 'inputRight') {
+      switch (this.mainframe.conversionLHS.country) {
         case 'USA':
+<<<<<<< HEAD
           this.resultL = event.target.value * this.conversionRHS.USA;
           this.resultR = event.target.value
           break;
@@ -71,13 +99,35 @@ export class MainContentComponent implements OnInit {
         case 'EU':
           this.resultL = event.target.value * this.conversionRHS.EU;
           this.resultR = event.target.value
+=======
+          this.mainframe.resultLeftHandSide = value * this.mainframe.conversionRHS.USA;
+          this.mainframe.resultRightHandSide = value;
+
+          break;
+        case 'UK':
+          this.mainframe.resultLeftHandSide = value * this.mainframe.conversionRHS.UK;
+          this.mainframe.resultRightHandSide = value;
+
+          break;
+        case 'EU':
+          this.mainframe.resultLeftHandSide = value * this.mainframe.conversionRHS.EU;
+          this.mainframe.resultRightHandSide = value;
+
+>>>>>>> upstream/development
           break;
       }
+      this.resultL = this.mainframe.resultLeftHandSide.toFixed(this.decimalPlaces);
     }
+
   }
 
-
-
+  clear(name: string) {
+    if (name === 'inputRight') {
+      this.resultR = null;
+    } else {
+      this.resultL = null;
+    }
+  }
 
   // function that sets currencies array to default values
   loadCurrencies() {
@@ -109,31 +159,52 @@ export class MainContentComponent implements OnInit {
     ];
   }
 
-  // functions that give the buttons a text value
+  // functions that sets conversion variables above based on user selection
   assignCurrencyR(currency: any) {
-    this.conversionRHS.country = currency.country;
-    this.conversionRHS.symbol = currency.symbol;
-    this.conversionRHS.denomination = currency.denomination;
-    this.conversionRHS.EU = currency.EU;
-    this.conversionRHS.UK = currency.UK;
-    this.conversionRHS.USA = currency.USA;
+    this.mainframe.conversionRHS.country = currency.country;
+    this.mainframe.conversionRHS.symbol = currency.symbol;
+    this.mainframe.conversionRHS.denomination = currency.denomination;
+    this.mainframe.conversionRHS.EU = currency.EU;
+    this.mainframe.conversionRHS.UK = currency.UK;
+    this.mainframe.conversionRHS.USA = currency.USA;
+    this.resultL = null;
+    this.resultR = null;
+    this.mainframe.resultRightHandSide = null;
+    this.mainframe.resultLeftHandSide = null;
   }
 
-
-
-  assignCurrencyL(currency: any,) {
-    this.conversionLHS.country = currency.country;
-    this.conversionLHS.symbol = currency.symbol;
-    this.conversionLHS.denomination = currency.denomination;
-    this.conversionLHS.EU = currency.EU;
-    this.conversionLHS.UK = currency.UK;
-    this.conversionLHS.USA = currency.USA;
+  assignCurrencyL(currency: any) {
+    this.mainframe.conversionLHS.country = currency.country;
+    this.mainframe.conversionLHS.symbol = currency.symbol;
+    this.mainframe.conversionLHS.denomination = currency.denomination;
+    this.mainframe.conversionLHS.EU = currency.EU;
+    this.mainframe.conversionLHS.UK = currency.UK;
+    this.mainframe.conversionLHS.USA = currency.USA;
+    this.resultL = null;
+    this.resultR = null;
+    this.mainframe.resultRightHandSide = null;
+    this.mainframe.resultLeftHandSide = null;
   }
 
+<<<<<<< HEAD
   saveConversion() {
     this.convert(event);
     console.log ('this.resultR=', this.resultR, 'this.resultL=', this.resultL);
   }
 
 
+=======
+  decrease() {
+    if (this.decimalPlaces > 0) {
+      this.decimalPlaces--;
+      this.mainframe.decimalPlace--;
+    }
+  }
+  increase() {
+    if (this.decimalPlaces < 9) {
+      this.decimalPlaces++;
+      this.mainframe.decimalPlace++;
+    }
+  }
+>>>>>>> upstream/development
 }
