@@ -26,6 +26,7 @@ export class MainContentComponent implements OnInit {
   };
   // array that contains currency objects
   currencies: Array<any> = [];
+  saveConversionArray: Array<string> = [];
 
   resultL: number;
   resultR: number;
@@ -44,12 +45,15 @@ export class MainContentComponent implements OnInit {
       switch (this.conversionRHS.country) {
         case 'USA':
           this.resultR = event.target.value * this.conversionLHS.USA;
+          this.resultL = event.target.value
           break;
         case 'UK':
           this.resultR = event.target.value * this.conversionLHS.UK;
+          this.resultL = event.target.value
           break;
         case 'EU':
           this.resultR = event.target.value * this.conversionLHS.EU;
+          this.resultL = event.target.value
           break;
       }
 
@@ -58,12 +62,15 @@ export class MainContentComponent implements OnInit {
       switch (this.conversionLHS.country) {
         case 'USA':
           this.resultL = event.target.value * this.conversionRHS.USA;
+          this.resultR = event.target.value
           break;
         case 'UK':
           this.resultL = event.target.value * this.conversionRHS.UK;
+          this.resultR = event.target.value
           break;
         case 'EU':
           this.resultL = event.target.value * this.conversionRHS.EU;
+          this.resultR = event.target.value
           break;
       }
     }
@@ -121,6 +128,11 @@ export class MainContentComponent implements OnInit {
     this.conversionLHS.EU = currency.EU;
     this.conversionLHS.UK = currency.UK;
     this.conversionLHS.USA = currency.USA;
+  }
+
+  saveConversion() {
+    this.convert(event);
+    console.log ('this.resultR=', this.resultR, 'this.resultL=', this.resultL);
   }
 
 
