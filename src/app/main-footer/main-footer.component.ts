@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MainframeService } from '../mainframe.service';
 
 @Component({
   selector: 'app-main-footer',
@@ -7,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainFooterComponent implements OnInit {
 
-  constructor() { }
+
+  constructor(public mainframe: MainframeService) { }
 
   ngOnInit() {
   }
-
 }

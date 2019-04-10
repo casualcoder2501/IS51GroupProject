@@ -1,5 +1,14 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { MainframeService } from '../mainframe.service';
 
+interface ICurrencies {
+  country: string;
+  denomination: string;
+  symbol: string;
+  UK: number;
+  EU: number;
+  USA: number;
+}
 
 @Component({
   selector: 'app-main-content',
@@ -7,79 +16,69 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./main-content.component.css']
 })
 export class MainContentComponent implements OnInit {
-  // variables that hold user selected currencies to be converted RHS = Right Hand Side, LHS = Left Hand Side
-  conversionRHS = {
-    country: 'USA',
-    denomination: 'USD',
-    symbol: '$',
-    UK: .76,
-    EU: .89,
-    USA: 1
-  };
-  conversionLHS = {
-    country: 'UK',
-    denomination: 'Pound',
-    symbol: '£',
-    USA: 1.31,
-    EU: 1.17,
-    UK: 1
-  };
+
   // array that contains currency objects
-  currencies: Array<any> = [];
+  currencies: Array<ICurrencies> = [];
+  resultL: string;
+  resultR: string;
+  decimalPlaces = 2;
 
-  resultL: number | string;
-  resultR: number | string;
-
-  errorMessage: string;
-
-  constructor() { }
+  constructor(public mainframe: MainframeService) { }
 
   ngOnInit() {
     this.loadCurrencies();
   }
+
   // Event handler for catching the user input and converting
-  convert(event: any) {
+  convert(name: string, value: number) {
 
-    if (event.target.name === 'inputLHS') {
-      switch (this.conversionRHS.country) {
+    if (name === 'inputLeft') {
+      switch (this.mainframe.conversionRHS.country) {
         case 'USA':
-          this.resultR = event.target.value * this.conversionLHS.USA;
-          this.resultR = this.resultR.toFixed(2);
+          this.mainframe.resultRightHandSide = value * this.mainframe.conversionLHS.USA;
+          this.mainframe.resultLeftHandSide = value;
           break;
         case 'UK':
-          this.resultR = event.target.value * this.conversionLHS.UK;
-          this.resultR = this.resultR.toFixed(2);
+          this.mainframe.resultRightHandSide = value * this.mainframe.conversionLHS.UK;
+          this.mainframe.resultLeftHandSide = value;
           break;
         case 'EU':
-          this.resultR = event.target.value * this.conversionLHS.EU;
-          this.resultR = this.resultR.toFixed(2);
+          this.mainframe.resultRightHandSide = value * this.mainframe.conversionLHS.EU;
+          this.mainframe.resultLeftHandSide = value;
           break;
       }
+      this.resultR = this.mainframe.resultRightHandSide.toFixed(this.decimalPlaces);
 
-
-    }
-    if (event.target.name === 'inputRHS') {
-      switch (this.conversionLHS.country) {
+    } else if (name === 'inputRight') {
+      switch (this.mainframe.conversionLHS.country) {
         case 'USA':
-          this.resultL = event.target.value * this.conversionRHS.USA;
-          this.resultL = this.resultL.toFixed(2);
+          this.mainframe.resultLeftHandSide = value * this.mainframe.conversionRHS.USA;
+          this.mainframe.resultRightHandSide = value;
+
           break;
         case 'UK':
-          this.resultL = event.target.value * this.conversionRHS.UK;
-          this.resultL = this.resultL.toFixed(2);
+          this.mainframe.resultLeftHandSide = value * this.mainframe.conversionRHS.UK;
+          this.mainframe.resultRightHandSide = value;
+
           break;
         case 'EU':
-          this.resultL = event.target.value * this.conversionRHS.EU;
-          this.resultL = this.resultL.toFixed(2);
+          this.mainframe.resultLeftHandSide = value * this.mainframe.conversionRHS.EU;
+          this.mainframe.resultRightHandSide = value;
+
           break;
       }
-
-
+      this.resultL = this.mainframe.resultLeftHandSide.toFixed(this.decimalPlaces);
     }
+
   }
 
-
-
+  clear(name: string) {
+    if (name === 'inputRight') {
+      this.resultR = null;
+    } else {
+      this.resultL = null;
+    }
+  }
 
   // function that sets currencies array to default values
   loadCurrencies() {
@@ -113,28 +112,41 @@ export class MainContentComponent implements OnInit {
 
   // functions that sets conversion variables above based on user selection
   assignCurrencyR(currency: any) {
-    this.conversionRHS.country = currency.country;
-    this.conversionRHS.symbol = currency.symbol;
-    this.conversionRHS.denomination = currency.denomination;
-    this.conversionRHS.EU = currency.EU;
-    this.conversionRHS.UK = currency.UK;
-    this.conversionRHS.USA = currency.USA;
+    this.mainframe.conversionRHS.country = currency.country;
+    this.mainframe.conversionRHS.symbol = currency.symbol;
+    this.mainframe.conversionRHS.denomination = currency.denomination;
+    this.mainframe.conversionRHS.EU = currency.EU;
+    this.mainframe.conversionRHS.UK = currency.UK;
+    this.mainframe.conversionRHS.USA = currency.USA;
     this.resultL = null;
     this.resultR = null;
+    this.mainframe.resultRightHandSide = null;
+    this.mainframe.resultLeftHandSide = null;
   }
-
-
 
   assignCurrencyL(currency: any) {
-    this.conversionLHS.country = currency.country;
-    this.conversionLHS.symbol = currency.symbol;
-    this.conversionLHS.denomination = currency.denomination;
-    this.conversionLHS.EU = currency.EU;
-    this.conversionLHS.UK = currency.UK;
-    this.conversionLHS.USA = currency.USA;
+    this.mainframe.conversionLHS.country = currency.country;
+    this.mainframe.conversionLHS.symbol = currency.symbol;
+    this.mainframe.conversionLHS.denomination = currency.denomination;
+    this.mainframe.conversionLHS.EU = currency.EU;
+    this.mainframe.conversionLHS.UK = currency.UK;
+    this.mainframe.conversionLHS.USA = currency.USA;
     this.resultL = null;
     this.resultR = null;
+    this.mainframe.resultRightHandSide = null;
+    this.mainframe.resultLeftHandSide = null;
   }
 
-
+  decrease() {
+    if (this.decimalPlaces > 0) {
+      this.decimalPlaces--;
+      this.mainframe.decimalPlace--;
+    }
+  }
+  increase() {
+    if (this.decimalPlaces < 9) {
+      this.decimalPlaces++;
+      this.mainframe.decimalPlace++;
+    }
+  }
 }
