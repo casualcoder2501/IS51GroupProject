@@ -16,9 +16,20 @@ export class MainFooterComponent implements OnInit {
 
   saveConversion() {
     console.log('this.resultRightHandSide', this.mainframe.resultRightHandSide,
-                    'this.resultLeftHandSide', this.mainframe.resultLeftHandSide);
+      'this.resultLeftHandSide', this.mainframe.resultLeftHandSide);
     console.log('nationleft', this.mainframe.conversionLHS.denomination,
-                    'nationright', this.mainframe.conversionRHS.denomination);
+      'nationright', this.mainframe.conversionRHS.denomination);
+    this.mainframe.history.unshift({
+      countryLeft: this.mainframe.conversionLHS.country,
+      countryRight: this.mainframe.conversionRHS.country,
+      denominationLeft: this.mainframe.conversionLHS.denomination,
+      denominationRight: this.mainframe.conversionRHS.denomination,
+      symbolLeft: this.mainframe.conversionLHS.symbol,
+      symbolRight: this.mainframe.conversionRHS.symbol,
+      conversionLeft: this.mainframe.resultLeftHandSide,
+      ConversionRight: this.mainframe.resultRightHandSide
+    });
+    console.log(this.mainframe.history);
   }
 
   clearHistory() {

@@ -1,8 +1,22 @@
 <div class="row-three">
-    <div class="threeButtons">
-        <button (click)=saveConversion() type="button" class="btn btn-success">Save Conversion</button>
-        <button (click)=clearHistory() type="button" class="btn btn-danger">Clear History</button>
-      </div>
-  
+    <div class="padding">
+        <div class="center-height">
+            <div>
+                <button mat-raised-button (click)=saveConversion() type="button" class="btn btn-success">Save
+                    Conversion</button>
+            </div>
+            <div class="large-line-break"></div>
+            <div>
+                <button mat-raised-button (click)=clearHistory() type="button" class="btn btn-danger">Clear
+                    History</button>
+            </div>
+        </div>
+    </div>
+    <div class="padding">
+        <div class="no-items" *ngIf="mainframe.history.length === 0">
+            <h5>No history has been saved</h5>
+        </div>
+    </div>
+    <div class="padding">
+    </div>
 </div>
-

@@ -1,0 +1,32 @@
+*{
+    margin: 5px;
+    padding: 5px;
+    position: relative;
+}
+
+.action-bar {
+    position: relative;
+    background-color: #3f90b5;
+  }
+
+.no-items {
+    align-self: center;
+    justify-self: center;
+}
+
+.action-bar>.align-right {
+    position: absolute;
+    right: 20px;
+  }
+
+.table-grid {
+    display: grid;
+    overflow: auto;
+    max-height: 420px;
+    min-height: 420px;
+}
+
+.center-height{
+    align-items: center;
+    justify-self: center;
+}
