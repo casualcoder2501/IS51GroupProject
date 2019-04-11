@@ -27,8 +27,9 @@ export class MainframeService {
 
   decimalPlace = 2;
 
+  
   history = [];
-  constructor() { }
+  constructor() {}
 
 
 }
