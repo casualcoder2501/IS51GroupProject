@@ -1,6 +1,17 @@
 import { Injectable } from '@angular/core';
 import { MainContentComponent } from './main-content/main-content.component';
 
+interface IHistory {
+  countryLeft: string;
+  countryRight: string;
+  denominationLeft: string;
+  denominationRight: string;
+  symbolLeft: string;
+  symbolRight: string;
+  conversionLeft: number;
+  conversionRight: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -22,13 +33,15 @@ export class MainframeService {
     UK: 1
   };
 
+
   resultLeftHandSide: number;
   resultRightHandSide: number;
 
   decimalPlace = 2;
 
-  
-  history = [];
+
+  history: Array<IHistory> = [];
+  historyOverflow: Array<IHistory> = [];
   constructor() {}
 
 

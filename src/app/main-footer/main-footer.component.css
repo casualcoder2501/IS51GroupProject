@@ -1,0 +1,34 @@
+*{
+    margin: 5px;
+    padding: 5px;
+    position: relative;
+}
+
+.action-bar {
+    position: relative;
+    background-color: #3f90b5;
+  }
+
+.arrayBox{
+    text-align: center
+}
+
+.no-items {
+    align-self: center;
+    justify-self: center;
+}
+
+.action-bar>.align-right {
+    position: absolute;
+    right: 20px;
+  }
+
+.table-grid {
+    float: center;
+    overflow: hidden;
+}
+
+.center-height{
+    align-items: center;
+    justify-self: center;
+}
