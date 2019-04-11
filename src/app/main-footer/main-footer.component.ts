@@ -6,6 +6,7 @@ import { MainframeService } from '../mainframe.service';
   templateUrl: './main-footer.component.html',
   styleUrls: ['./main-footer.component.css']
 })
+
 export class MainFooterComponent implements OnInit {
 
 
