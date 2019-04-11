@@ -6,7 +6,6 @@ interface IHistory {
   countryRight: string;
   denominationLeft: string;
   denominationRight: string;
-  equalSign: string;
   symbolLeft: string;
   symbolRight: string;
   conversionLeft: number;
@@ -37,7 +36,6 @@ export class MainframeService {
 
   resultLeftHandSide: number;
   resultRightHandSide: number;
-  equal = '=';
 
   decimalPlace = 2;
 
