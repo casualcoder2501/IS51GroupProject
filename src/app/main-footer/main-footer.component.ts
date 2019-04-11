@@ -41,6 +41,10 @@ rightAmount: number;
     console.log(this.mainframe.history);
   }
 
+  delete(index: number) {
+    this.mainframe.history.splice(index, 1);
+  }
+
   clearHistory() {
     this.mainframe.history = [];
   }
