@@ -12,39 +12,68 @@
             </div>
         </div>
     </div>
-    <div class="padding">
+    <div class="arrayBox">
         <div class="no-items" *ngIf="mainframe.history.length === 0">
             <h5>No history has been saved</h5>
         </div>
-        <table *ngIf="mainframe.history.length > 0">
-                <thead>
-                  <!-- <tr>
-                    <td>Country</td>
-                    <td>Denomination</td>
-                    <td>Symbol</td>
-                    <td>           </td>
-                    <td>Country</td>
-                    <td>Denomination</td>
-                    <td>Symbol</td>
-                    <td>        </td>
-                  </tr> -->
-                </thead>
-                <tbody>
-                    <tr *ngFor= "let detail of mainframe.history; let i = index">       
-                            <td><input [(ngModel)]="detail.countryLeft" type="text" class="form-control" ng-readonly="all"></td>
-                            <td><input [(ngModel)]="detail.denominationLeft"type="text" class="form-control"></td>
-                            <td><input [(ngModel)]="detail.symbolLeft"type="text" class="form-control"></td>
-                            <td><input [(ngModel)]="detail.conversionLeft"type="text" class="form-control"></td>
-                            <td>=</td>
-                            <td><input [(ngModel)]="detail.countryRight" type="text" class="form-control"></td>
-                            <td><input [(ngModel)]="detail.denominationRight"type="text" class="form-control"></td>
-                            <td><input [(ngModel)]="detail.symbolRight"type="text" class="form-control"></td>
-                            <td><input [(ngModel)]="detail.conversionRight"type="text" class="form-control"></td>
-                            <td><button (click)="delete(i)" mat-raised-button type="button" class="btn btn-danger">X</button></td>
-                    </tr>
-                </tbody>
-              </table>
+        <table class="table-grid" *ngIf="mainframe.history.length > 0">
+            <thead>
+            </thead>
+            <tbody style="font-family:Arial;font-weight: bold">
+                <tr *ngFor="let detail of mainframe.history; let i = index">
+                    <td>{{detail.countryLeft}}</td>
+                    <td>{{detail.denominationLeft}}</td>
+                    <td>{{detail.symbolLeft}}</td>
+                    <td>{{detail.conversionLeft}}</td>
+                    <td>=</td>
+                    <td>{{detail.countryRight}}</td>
+                    <td>{{detail.denominationRight}}</td>
+                    <td>{{detail.symbolRight}}</td>
+                    <td>{{detail.conversionRight}}</td>
+                    <td><button (click)="delete(i)" mat-raised-button type="button" class="btn btn-danger">X</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="arrayBox">
+        <table class="table-grid" *ngIf="mainframe.history.length > 0">
+            <thead>
+            </thead>
+            <tbody style="font-family:Arial;font-weight: bold">
+                <tr *ngFor="let detail of mainframe.historyOverflow; let i = index">
+                    <td>{{detail.countryLeft}}</td>
+                    <td>{{detail.denominationLeft}}</td>
+                    <td>{{detail.symbolLeft}}</td>
+                    <td>{{detail.conversionLeft}}</td>
+                    <td>=</td>
+                    <td>{{detail.countryRight}}</td>
+                    <td>{{detail.denominationRight}}</td>
+                    <td>{{detail.symbolRight}}</td>
+                    <td>{{detail.conversionRight}}</td>
+                    <td><button (click)="delete(i)" mat-raised-button type="button" class="btn btn-danger">X</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <div class="padding">
     </div>
 </div>
+
+<!-- <app-flex-modal #flex1
+  [transition]="'slide-in-right'"  
+  [modalStyle]="{'border':'5px solid #CCC'}"
+  [showToolbar]="true" 
+  [showDefaultAction]="false" 
+  [modalID]="'error-modal'" 
+  [width]="'615px'"
+  [height]="'auto'">
+  <span class="modal-title">Warning</span>
+  <div class="modal-content">
+    <h3>{{errorMessage}}</h3>
+  </div>
+  <div class="modal-action">
+      <button mat-raised-button color="primary" (click)="flex1.modal.cancel()">Close</button>
+  </div>
+</app-flex-modal> -->

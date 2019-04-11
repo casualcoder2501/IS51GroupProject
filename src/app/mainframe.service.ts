@@ -41,6 +41,7 @@ export class MainframeService {
 
 
   history: Array<IHistory> = [];
+  historyOverflow: Array<IHistory> = [];
   constructor() {}
 
 

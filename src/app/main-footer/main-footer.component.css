@@ -9,6 +9,10 @@
     background-color: #3f90b5;
   }
 
+.arrayBox{
+    text-align: center
+}
+
 .no-items {
     align-self: center;
     justify-self: center;
@@ -20,10 +24,8 @@
   }
 
 .table-grid {
-    display: grid;
-    overflow: auto;
-    max-height: 420px;
-    min-height: 420px;
+    float: center;
+    overflow: hidden;
 }
 
 .center-height{
