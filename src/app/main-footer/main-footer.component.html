@@ -30,7 +30,7 @@
                     <td>{{detail.denominationRight}}</td>
                     <td>{{detail.symbolRight}}</td>
                     <td>{{detail.conversionRight}}</td>
-                    <td><button (click)="delete(i)" mat-raised-button type="button" class="btn btn-danger">X</button>
+                    <td><button (click)="delete(i, 'base')" mat-raised-button type="button" class="btn btn-danger">X</button>
                     </td>
                 </tr>
             </tbody>
@@ -51,7 +51,7 @@
                     <td>{{detail.denominationRight}}</td>
                     <td>{{detail.symbolRight}}</td>
                     <td>{{detail.conversionRight}}</td>
-                    <td><button (click)="delete(i)" mat-raised-button type="button" class="btn btn-danger">X</button>
+                    <td><button (click)="delete(i, overflow)" mat-raised-button type="button" class="btn btn-danger">X</button>
                     </td>
                 </tr>
             </tbody>

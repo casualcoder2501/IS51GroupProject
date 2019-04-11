@@ -9,14 +9,6 @@ import { MainframeService } from '../mainframe.service';
 
 export class MainFooterComponent implements OnInit {
 
-  leftCountry: string;
-  righttCountry: string;
-  leftDenomination: string;
-  rightDenomination: string;
-  leftSymbol: string;
-  rightSymbol: string;
-  leftAmount: number;
-  rightAmount: number;
   errorMessage = '';
 
   constructor(
@@ -28,10 +20,10 @@ export class MainFooterComponent implements OnInit {
   }
 
   saveConversion() {
-    console.log('this.resultRightHandSide', this.mainframe.resultRightHandSide,
-      'this.resultLeftHandSide', this.mainframe.resultLeftHandSide);
-    console.log('nationleft', this.mainframe.conversionLHS.denomination,
-      'nationright', this.mainframe.conversionRHS.denomination);
+    // console.log('this.resultRightHandSide', this.mainframe.resultRightHandSide,
+    //   'this.resultLeftHandSide', this.mainframe.resultLeftHandSide);
+    // console.log('nationleft', this.mainframe.conversionLHS.denomination,
+    //   'nationright', this.mainframe.conversionRHS.denomination);
     if (this.mainframe.historyOverflow.length > 3) {
       this.errorMessage = 'Delete one segment';
       alert(this.errorMessage);
@@ -50,7 +42,7 @@ export class MainFooterComponent implements OnInit {
           conversionRight: this.mainframe.resultRightHandSide
         });
 
-        console.log(this.mainframe.historyOverflow);
+        // console.log(this.mainframe.historyOverflow);
 
       } else {
         this.mainframe.history.unshift({
@@ -63,19 +55,23 @@ export class MainFooterComponent implements OnInit {
           conversionLeft: this.mainframe.resultLeftHandSide,
           conversionRight: this.mainframe.resultRightHandSide
         });
-        console.log(this.mainframe.history);
+        // console.log(this.mainframe.history);
       }
     }
   }
 
-  MainCtrl($scope) {
-    $scope.first = 'Angular';
-    $scope.second = 'JS';
-    $scope.truefalse = true;
-  }
-
-  delete(index: number) {
-    this.mainframe.history.splice(index, 1);
+  delete(index: number, arrays: string) {
+    if (arrays === 'base') {
+      if (this.mainframe.historyOverflow.length > 0) {
+        this.mainframe.history.splice(index, 1);
+        this.mainframe.history.push(this.mainframe.historyOverflow[0]);
+        this.mainframe.historyOverflow.splice(0, 1);
+      } else {
+        this.mainframe.history.splice(index, 1);
+      }
+    } else {
+      this.mainframe.historyOverflow.splice(index, 1);
+    }
   }
 
   clearHistory() {
