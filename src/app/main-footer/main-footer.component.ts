@@ -13,4 +13,12 @@ export class MainFooterComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  saveConversion() {
+    console.log('this.resultRightHandSide', this.mainframe.resultRightHandSide,
+                    'this.resultLeftHandSide', this.mainframe.resultLeftHandSide);
+  }
+
 }
+
+

@@ -31,7 +31,10 @@ body {
     justify-content: center;
     padding: 50px;
 }
+
 .row-three {
+    align-items: center;
+    justify-content: center;
     display: grid;
     border: black 1px none;
     height:100%;
