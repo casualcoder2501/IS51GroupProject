@@ -18,6 +18,7 @@ export class MainFooterComponent implements OnInit {
   leftAmount: number;
   rightAmount: number;
   errorMessage = '';
+  equal = '=';
 
   constructor(
     public mainframe: MainframeService,
@@ -44,6 +45,7 @@ export class MainFooterComponent implements OnInit {
           countryRight: this.mainframe.conversionRHS.country,
           denominationLeft: this.mainframe.conversionLHS.denomination,
           denominationRight: this.mainframe.conversionRHS.denomination,
+          equalSign: this.mainframe.equal,
           symbolLeft: this.mainframe.conversionLHS.symbol,
           symbolRight: this.mainframe.conversionRHS.symbol,
           conversionLeft: this.mainframe.resultLeftHandSide,
@@ -58,6 +60,7 @@ export class MainFooterComponent implements OnInit {
           countryRight: this.mainframe.conversionRHS.country,
           denominationLeft: this.mainframe.conversionLHS.denomination,
           denominationRight: this.mainframe.conversionRHS.denomination,
+          equalSign: this.mainframe.equal,
           symbolLeft: this.mainframe.conversionLHS.symbol,
           symbolRight: this.mainframe.conversionRHS.symbol,
           conversionLeft: this.mainframe.resultLeftHandSide,
@@ -68,14 +71,18 @@ export class MainFooterComponent implements OnInit {
     }
   }
 
-  MainCtrl($scope) {
-    $scope.first = 'Angular';
-    $scope.second = 'JS';
-    $scope.truefalse = true;
+  delete(index: number, arrays: string) {
+    if (arrays === 'base') {
+      this.mainframe.history.splice(index, 1);
+      this.mainframe.history.push(this.mainframe.historyOverflow[0]);
+      this.mainframe.historyOverflow.splice(0, 1);
+    } else {
+      this.mainframe.historyOverflow.splice(index, 1);
+    }
   }
 
-  delete(index: number) {
-    this.mainframe.history.splice(index, 1);
+  delete2(index: number) {
+    this.mainframe.historyOverflow.splice(index, 1);
   }
 
   clearHistory() {

@@ -25,12 +25,12 @@
                     <td>{{detail.denominationLeft}}</td>
                     <td>{{detail.symbolLeft}}</td>
                     <td>{{detail.conversionLeft}}</td>
-                    <td>=</td>
+                    <td>{{detail.equalSign}}</td>
                     <td>{{detail.countryRight}}</td>
                     <td>{{detail.denominationRight}}</td>
                     <td>{{detail.symbolRight}}</td>
                     <td>{{detail.conversionRight}}</td>
-                    <td><button (click)="delete(i)" mat-raised-button type="button" class="btn btn-danger">X</button>
+                    <td><button (click)="delete(i, 'base')" mat-raised-button type="button" class="btn btn-danger">X</button>
                     </td>
                 </tr>
             </tbody>
@@ -46,12 +46,12 @@
                     <td>{{detail.denominationLeft}}</td>
                     <td>{{detail.symbolLeft}}</td>
                     <td>{{detail.conversionLeft}}</td>
-                    <td>=</td>
+                    <td>{{detail.equaSignl}}</td>
                     <td>{{detail.countryRight}}</td>
                     <td>{{detail.denominationRight}}</td>
                     <td>{{detail.symbolRight}}</td>
                     <td>{{detail.conversionRight}}</td>
-                    <td><button (click)="delete(i)" mat-raised-button type="button" class="btn btn-danger">X</button>
+                    <td><button (click)="delete(i, overflow)" mat-raised-button type="button" class="btn btn-danger">X</button>
                     </td>
                 </tr>
             </tbody>
