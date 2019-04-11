@@ -4,11 +4,6 @@
     position: relative;
 }
 
-.action-bar {
-    position: relative;
-    background-color: #3f90b5;
-  }
-
 .arrayBox{
     text-align: center
 }
@@ -18,10 +13,6 @@
     justify-self: center;
 }
 
-.action-bar>.align-right {
-    position: absolute;
-    right: 20px;
-  }
 
 .table-grid {
     float: center;

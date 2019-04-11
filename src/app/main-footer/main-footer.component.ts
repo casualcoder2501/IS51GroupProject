@@ -9,14 +9,6 @@ import { MainframeService } from '../mainframe.service';
 
 export class MainFooterComponent implements OnInit {
 
-  leftCountry: string;
-  righttCountry: string;
-  leftDenomination: string;
-  rightDenomination: string;
-  leftSymbol: string;
-  rightSymbol: string;
-  leftAmount: number;
-  rightAmount: number;
   errorMessage = '';
 
   constructor(
@@ -28,10 +20,10 @@ export class MainFooterComponent implements OnInit {
   }
 
   saveConversion() {
-    console.log('this.resultRightHandSide', this.mainframe.resultRightHandSide,
-      'this.resultLeftHandSide', this.mainframe.resultLeftHandSide);
-    console.log('nationleft', this.mainframe.conversionLHS.denomination,
-      'nationright', this.mainframe.conversionRHS.denomination);
+    // console.log('this.resultRightHandSide', this.mainframe.resultRightHandSide,
+    //   'this.resultLeftHandSide', this.mainframe.resultLeftHandSide);
+    // console.log('nationleft', this.mainframe.conversionLHS.denomination,
+    //   'nationright', this.mainframe.conversionRHS.denomination);
     if (this.mainframe.historyOverflow.length > 3) {
       this.errorMessage = 'Delete one segment';
       alert(this.errorMessage);
@@ -50,7 +42,7 @@ export class MainFooterComponent implements OnInit {
           conversionRight: this.mainframe.resultRightHandSide
         });
 
-        console.log(this.mainframe.historyOverflow);
+        // console.log(this.mainframe.historyOverflow);
 
       } else {
         this.mainframe.history.unshift({
@@ -63,7 +55,7 @@ export class MainFooterComponent implements OnInit {
           conversionLeft: this.mainframe.resultLeftHandSide,
           conversionRight: this.mainframe.resultRightHandSide
         });
-        console.log(this.mainframe.history);
+        // console.log(this.mainframe.history);
       }
     }
   }
@@ -80,10 +72,6 @@ export class MainFooterComponent implements OnInit {
     } else {
       this.mainframe.historyOverflow.splice(index, 1);
     }
-  }
-
-  delete2(index: number) {
-    this.mainframe.historyOverflow.splice(index, 1);
   }
 
   clearHistory() {
