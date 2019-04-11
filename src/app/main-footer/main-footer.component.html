@@ -18,8 +18,7 @@
         </div>
         <table *ngIf="mainframe.history.length > 0">
                 <thead>
-                  <tr>
-                    <td></td>
+                  <!-- <tr>
                     <td>Country</td>
                     <td>Denomination</td>
                     <td>Symbol</td>
@@ -28,20 +27,19 @@
                     <td>Denomination</td>
                     <td>Symbol</td>
                     <td>        </td>
-                    <td></td>
-                  </tr>
+                  </tr> -->
                 </thead>
                 <tbody>
-                        <tr *ngFor= "let order of history; let i = index">         
-                            <td><input [(ngModel)]="mainframe.history.countryLeft" type="text" class="form-control" placeholder="PID"></td>
-                            <td><input [(ngModel)]="mainframe.history.denominationLeft"type="text" class="form-control" placeholder="Description"></td>
-                            <td><input [(ngModel)]="mainframe.history.symbolLeft"type="text" class="form-control" placeholder="Price"></td>
-                            <td><input [(ngModel)]="mainframe.history.conversionLHS"type="text" class="form-control" placeholder="Quantity"></td>
-                            <td><input [(ngModel)]="mainframe.history.countryRight" type="text" class="form-control" placeholder="PID"></td>
-                            <td><input [(ngModel)]="mainframe.history.denominationRight"type="text" class="form-control" placeholder="Description"></td>
-                            <td><input [(ngModel)]="mainframe.history.symbolRight"type="text" class="form-control" placeholder="Price"></td>
-                            <td><input [(ngModel)]="mainframe.history.conversionRHS"type="text" class="form-control" placeholder="Quantity"></td>
-                        </tr>
+                    <tr *ngFor= "let detail of mainframe.history; let i = index">       
+                            <td><input [(ngModel)]="detail.countryLeft" type="text" class="form-control" ng-readonly="all"></td>
+                            <td><input [(ngModel)]="detail.denominationLeft"type="text" class="form-control"></td>
+                            <td><input [(ngModel)]="detail.symbolLeft"type="text" class="form-control"></td>
+                            <td><input [(ngModel)]="detail.conversionLeft"type="text" class="form-control"></td>
+                            <td><input [(ngModel)]="detail.countryRight" type="text" class="form-control"></td>
+                            <td><input [(ngModel)]="detail.denominationRight"type="text" class="form-control"></td>
+                            <td><input [(ngModel)]="detail.symbolRight"type="text" class="form-control"></td>
+                            <td><input [(ngModel)]="detail.conversionRight"type="text" class="form-control"></td>
+                    </tr>
                 </tbody>
               </table>
     </div>

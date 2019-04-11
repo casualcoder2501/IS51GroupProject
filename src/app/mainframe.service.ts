@@ -9,7 +9,7 @@ interface IHistory {
   symbolLeft: string;
   symbolRight: string;
   conversionLeft: number;
-  ConversionRight: number;
+  conversionRight: number;
 }
 
 @Injectable({
@@ -39,7 +39,7 @@ export class MainframeService {
 
   decimalPlace = 2;
 
-  
+
   history: Array<IHistory> = [];
   constructor() {}
 

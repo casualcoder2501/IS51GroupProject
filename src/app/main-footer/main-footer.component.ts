@@ -9,6 +9,14 @@ import { MainframeService } from '../mainframe.service';
 
 export class MainFooterComponent implements OnInit {
 
+leftCountry: string;
+righttCountry: string;
+leftDenomination: string;
+rightDenomination: string;
+leftSymbol: string;
+rightSymbol: string;
+leftAmount: number;
+rightAmount: number;
 
   constructor(public mainframe: MainframeService) { }
 
@@ -28,7 +36,7 @@ export class MainFooterComponent implements OnInit {
       symbolLeft: this.mainframe.conversionLHS.symbol,
       symbolRight: this.mainframe.conversionRHS.symbol,
       conversionLeft: this.mainframe.resultLeftHandSide,
-      ConversionRight: this.mainframe.resultRightHandSide
+      conversionRight: this.mainframe.resultRightHandSide
     });
     console.log(this.mainframe.history);
   }
