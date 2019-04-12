@@ -18,15 +18,13 @@ interface ICurrencies {
 export class MainContentComponent implements OnInit {
 
   // array that contains currency objects
-  currencies: Array<ICurrencies> = [];
+  currencies: Array<ICurrencies> = this.mainframe.currencies;
   resultL: string;
   resultR: string;
   decimalPlaces = 2;
-
   constructor(public mainframe: MainframeService) { }
 
   ngOnInit() {
-    this.loadCurrencies();
   }
 
   // Event handler for catching the user input and converting
@@ -81,34 +79,7 @@ export class MainContentComponent implements OnInit {
   }
 
   // function that sets currencies array to default values
-  loadCurrencies() {
-    this.currencies = [
-      {
-        country: 'USA',
-        denomination: 'USD',
-        symbol: '$',
-        UK: .76,
-        EU: .89,
-        USA: 1
-      },
-      {
-        country: 'UK',
-        denomination: 'Pound',
-        symbol: '£',
-        USA: 1.31,
-        EU: 1.17,
-        UK: 1
-      },
-      {
-        country: 'EU',
-        denomination: 'Euro',
-        symbol: '€',
-        UK: .85,
-        USA: 1.12,
-        EU: 1
-      }
-    ];
-  }
+  
 
   // functions that sets conversion variables above based on user selection
   assignCurrencyR(currency: any) {
