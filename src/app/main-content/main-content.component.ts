@@ -1,14 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MainframeService } from '../mainframe.service';
-
-interface ICurrencies {
-  country: string;
-  denomination: string;
-  symbol: string;
-  UK: number;
-  EU: number;
-  USA: number;
-}
+import { ApiService } from '../api.service';
+import {ICurrency} from '../mainframe.service';
 
 @Component({
   selector: 'app-main-content',
@@ -16,137 +9,88 @@ interface ICurrencies {
   styleUrls: ['./main-content.component.css']
 })
 export class MainContentComponent implements OnInit {
-
+  fontFamily = {
+    'font-family': 'Arial',
+    'font-weight': 'bold'
+  };
   // array that contains currency objects
-  currencies: Array<ICurrencies> = [];
+  currencies = this.api.localList; //default is local storage
   resultL: string;
-  resultR: string;
   decimalPlaces = 2;
+  conversionLabels = [];
 
-  constructor(public mainframe: MainframeService) { }
+
+  constructor(public mainframe: MainframeService, public api: ApiService) { }
 
   ngOnInit() {
-    this.loadCurrencies();
+
+    this.loadUp();
+
   }
 
-  // Event handler for catching the user input and converting
-  convert(name: string, value: number) {
 
-    if (name === 'inputLeft') {
-      switch (this.mainframe.conversionRHS.country) {
-        case 'USA':
-          this.mainframe.resultRightHandSide = value * this.mainframe.conversionLHS.USA;
-          this.mainframe.resultLeftHandSide = value;
-          break;
-        case 'UK':
-          this.mainframe.resultRightHandSide = value * this.mainframe.conversionLHS.UK;
-          this.mainframe.resultLeftHandSide = value;
-          break;
-        case 'EU':
-          this.mainframe.resultRightHandSide = value * this.mainframe.conversionLHS.EU;
-          this.mainframe.resultLeftHandSide = value;
-          break;
-      }
-      this.resultR = this.mainframe.resultRightHandSide.toFixed(this.decimalPlaces);
+// Makes http call to get our conversion array only if the local storage is empty, 
+// also sets labels for conversion countries. 
+// If it makes the http call it saves it to local storage
+  loadUp() {
+    if (this.api.localList === null || this.api.localList.length === 0) {
+      this.api.httpCall(this.api.currencyList); //Makes Http call if condition is true
+      setTimeout(() => this.api.saveCurrenciesToLocalStorage(), 2500); //waits 2.5 seconds to save currency list to local storage
 
-    } else if (name === 'inputRight') {
-      switch (this.mainframe.conversionLHS.country) {
-        case 'USA':
-          this.mainframe.resultLeftHandSide = value * this.mainframe.conversionRHS.USA;
-          this.mainframe.resultRightHandSide = value;
-
-          break;
-        case 'UK':
-          this.mainframe.resultLeftHandSide = value * this.mainframe.conversionRHS.UK;
-          this.mainframe.resultRightHandSide = value;
-
-          break;
-        case 'EU':
-          this.mainframe.resultLeftHandSide = value * this.mainframe.conversionRHS.EU;
-          this.mainframe.resultRightHandSide = value;
-
-          break;
-      }
-      this.resultL = this.mainframe.resultLeftHandSide.toFixed(this.decimalPlaces);
+    } else {
+      this.currencies = this.api.localList; // if statement is false pulls currencies from local storage
     }
-
+    this.conversionLabels = Object.keys(this.currencies[0].rates)
   }
+
+  // Event handler for catching the user input 
+
+  setCountry(country: ICurrency, value) {
+    this.mainframe.currentCountry = country;
+    console.log(this.mainframe.currentCountry)
+    this.mainframe.rates = country.rates;
+    console.log(this.mainframe.rates);
+    console.log(this.mainframe.conversionCountry)
+    this.mainframe.convert(value);
+  }
+
+  setRate(country: string, rate) {
+    this.mainframe.conversionCountry = country;
+    console.log(this.mainframe.conversionCountry);
+    this.mainframe.convert(rate);
+  }
+
+// clear function
 
   clear(name: string) {
-    if (name === 'inputRight') {
-      this.resultR = null;
-    } else {
+    if (name === 'inputLeft') {
       this.resultL = null;
-    }
+      this.mainframe.resultRightHandSide = null;
+    } 
   }
 
   // function that sets currencies array to default values
-  loadCurrencies() {
-    this.currencies = [
-      {
-        country: 'USA',
-        denomination: 'USD',
-        symbol: '$',
-        UK: .76,
-        EU: .89,
-        USA: 1
-      },
-      {
-        country: 'UK',
-        denomination: 'Pound',
-        symbol: '£',
-        USA: 1.31,
-        EU: 1.17,
-        UK: 1
-      },
-      {
-        country: 'EU',
-        denomination: 'Euro',
-        symbol: '€',
-        UK: .85,
-        USA: 1.12,
-        EU: 1
-      }
-    ];
-  }
+
 
   // functions that sets conversion variables above based on user selection
-  assignCurrencyR(currency: any) {
-    this.mainframe.conversionRHS.country = currency.country;
-    this.mainframe.conversionRHS.symbol = currency.symbol;
-    this.mainframe.conversionRHS.denomination = currency.denomination;
-    this.mainframe.conversionRHS.EU = currency.EU;
-    this.mainframe.conversionRHS.UK = currency.UK;
-    this.mainframe.conversionRHS.USA = currency.USA;
-    this.resultL = null;
-    this.resultR = null;
-    this.mainframe.resultRightHandSide = null;
-    this.mainframe.resultLeftHandSide = null;
-  }
 
-  assignCurrencyL(currency: any) {
-    this.mainframe.conversionLHS.country = currency.country;
-    this.mainframe.conversionLHS.symbol = currency.symbol;
-    this.mainframe.conversionLHS.denomination = currency.denomination;
-    this.mainframe.conversionLHS.EU = currency.EU;
-    this.mainframe.conversionLHS.UK = currency.UK;
-    this.mainframe.conversionLHS.USA = currency.USA;
-    this.resultL = null;
-    this.resultR = null;
-    this.mainframe.resultRightHandSide = null;
-    this.mainframe.resultLeftHandSide = null;
-  }
 
-  decrease() {
+
+
+  decrease(rate) {
     if (this.decimalPlaces > 0) {
       this.decimalPlaces--;
       this.mainframe.decimalPlace--;
+      this.mainframe.convert(rate);
     }
+    console.log(this.api.localList);
   }
-  increase() {
+  increase(rate) {
+    console.log(this.currencies[0]);
     if (this.decimalPlaces < 9) {
       this.decimalPlaces++;
       this.mainframe.decimalPlace++;
+      this.mainframe.convert(rate);
     }
   }
 }
