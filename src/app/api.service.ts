@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
+
 import { HttpClient } from '@angular/common/http';
+
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
+
   localList = JSON.parse(localStorage.getItem('currencies'))
   base = ['USD', 'GBP', 'EUR', 'CAD', 'AUD', 'HKD', 'JPY', 'CHF', 'BRL', 'BGN'];
   currencyList = [];
@@ -34,4 +37,5 @@ export class ApiService {
     return savedLocalData;
   }
 }
+
 

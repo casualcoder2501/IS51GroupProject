@@ -14,9 +14,12 @@ export class MainContentComponent implements OnInit {
     'font-weight': 'bold'
   };
   // array that contains currency objects
+
   currencies = this.api.localList; //default is local storage
+
   resultL: string;
   decimalPlaces = 2;
+
   conversionLabels = [];
 
 
@@ -25,6 +28,7 @@ export class MainContentComponent implements OnInit {
   ngOnInit() {
 
     this.loadUp();
+
 
   }
 
