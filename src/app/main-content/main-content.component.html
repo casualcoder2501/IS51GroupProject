@@ -4,36 +4,35 @@
     <!-- DROP DOWN BUTTON -->
     <div class="btn-group" dropdown>
       <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle" aria-controls="dropdown-basic">
-        {{mainframe.conversionLHS.country}} {{mainframe.conversionLHS.symbol}} <span class="caret"></span>
+        {{this.mainframe.currentCountry.base}}<span class="caret"></span>
       </button>
       <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-        <li (click)="assignCurrencyL(currency)" *ngFor="let currency of currencies; let i = index" role="menuitem"><a class="dropdown-item" href="#">{{currency.country}}-{{currency.symbol}}</a></li>
+        <li (click)="setCountry(currency, resultLeft.value)" *ngFor="let currency of currencies; let i = index" role="menuitem"><a [ngStyle]="fontFamily" class="dropdown-item" href="#">{{currency.base}}</a></li>
       </ul>
     </div>
    <!-- INPUT FIELD FOR CONVERSION -->
-      <input class="input-style" [(ngModel)]="resultL" name="inputLeft" (click)="clear(resultLeft.name)" (keyup)="convert(resultLeft.name, resultLeft.value)" type="number" placeholder="type amount here" #resultLeft>
+      <input class="input-style" [disabled]="this.mainframe.conversionCountry === 'Pick a Currency'" [(ngModel)]="resultL" name="inputLeft" (click)="clear(resultLeft.name)" (keyup)="this.mainframe.convert(resultLeft.value)" type="number" placeholder="type amount here" #resultLeft>
   </div>
   <div class="conversion-box">
 
      <!-- DROP DOWN BUTTON -->
     <div class="btn-group" dropdown>
       <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle" aria-controls="dropdown-basic">
-        {{mainframe.conversionRHS.country}} {{mainframe.conversionRHS.symbol}}<span class="caret"></span>
+       {{this.mainframe.conversionCountry}} <span class="caret"></span>
       </button>
       <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-        <li (click)="assignCurrencyR(currency)" *ngFor="let currency of currencies; let i = index" role="menuitem"><a class="dropdown-item" href="#">{{currency.country}}-{{currency.symbol}}</a></li>
+        <li (click)="setRate(key, resultLeft.value)" *ngFor="let key of conversionLabels; let i = index" role="menuitem"><a [ngStyle]="fontFamily" class="dropdown-item" href="#">{{key}}</a></li>
       </ul>
     </div>
     <!-- INPUT FIELD FOR CONVERSION -->
-      <input class="input-style" [(ngModel)]="resultR" name="inputRight" (click)="clear(resultRight.name)" (keyup)="convert(resultRight.name, resultRight.value)" type="number" placeholder="type amount here" #resultRight>
-    
+     <input [(ngModel)]="this.mainframe.resultRightHandSide" disabled="true"class="input-style" type="number" placeholder="Output">
   </div>
   <div class="line-break"></div>
   <div class="decimal-box">
     <p style="font-family:Arial;font-weight: bold">Decimal Places</p>
     <div class="line-break"></div>
-      <button (click)="decrease()" type="button" class="btn btn-danger">-</button>
+      <button (click)="decrease(resultLeft.value)" type="button" class="btn btn-danger">-</button>
       <input class="input-decimal" [(ngModel)]="decimalPlaces"> 
-      <button (click)="increase()" type="button" class="btn btn-success">+</button>
+      <button (click)="increase(resultLeft.value)" type="button" class="btn btn-success">+</button>
 </div>
 </div>
