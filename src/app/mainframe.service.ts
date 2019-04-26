@@ -22,7 +22,7 @@ interface IHistory {
   providedIn: 'root'
 })
 
-
+export class MainframeService {
   // store the current values for conversion
   currentCountry: ICurrency = this.api.localList[0] //Country converting from
   conversionCountry: string = 'Pick a Currency'; // Country converting to. These are set to defaults
