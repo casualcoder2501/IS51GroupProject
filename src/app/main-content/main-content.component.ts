@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MainframeService } from '../mainframe.service';
 import { ApiService } from '../api.service';
-import { ICurrency } from '../mainframe.service';
+import { Currency } from '../currency.model';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-main-content',
@@ -15,56 +16,75 @@ export class MainContentComponent implements OnInit {
   };
   // array that contains currency objects
 
-  currencies = this.api.localList; // default is local storage
-
+  currencies: Array<Currency>; // gets set during loadUp function
+  d = new Date();
   resultL: string;
   decimalPlaces = 2;
 
   conversionLabels = [];
 
+  // variable that tells the app all our data is loaded
+  dataReady = false;
 
   constructor(public mainframe: MainframeService, public api: ApiService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    await this.loadUp();
 
-    this.loadUp();
+
+
 
 
   }
 
-
-  // Makes http call to get our conversion array only if the local storage is empty,
-  // also sets labels for conversion countries.
-  // If it makes the http call it saves it to local storage
-  loadUp() {
-    if (this.api.localList === null || this.api.localList.length === 0) {
-      this.api.httpCall(this.api.currencyList); // Makes Http call if condition is true
-      setTimeout(() => this.api.saveCurrenciesToLocalStorage(), 2500); // waits 2.5 seconds to save currency list to local storage
+  // function that retrieves the stored date from local storage or returns as todays date
+  today() {
+    if (localStorage.getItem('date')) {
+      return JSON.parse(localStorage.getItem('date'));
+    } else {
+      return this.d.getDate();
+    }
+  }
+  // function makes http call if there is nothing in local storage or if todays date is not the same as
+  // the date stored in local storage. If it doesnt make the call it sets variables according to local storage
+  async loadUp() {
+    const d = new Date();
+    if (this.api.localList === null || this.today() !== d.getDate()) {
+      await this.loadData();
 
     } else {
-      this.currencies = this.api.localList; // if statement is false pulls currencies from local storage
+      this.currencies = await this.api.localList;
+      this.conversionLabels = await Object.keys(this.api.localList[0].rates);
+      this.mainframe.currentCountry = await this.api.localList[0];
+      this.mainframe.rates = await this.api.localList[0].rates;
+      this.dataReady = true;
     }
-    this.conversionLabels = Object.keys(this.currencies[0].rates);
+
+  }
+  // Initializes all the data we need. Only runs if conditions above are met.
+  async loadData() {
+    await this.api.httpCall(this.api.currencyList);
+    this.api.localList = await this.api.setLocalStorage();
+    this.currencies = await this.api.localList;
+    this.conversionLabels = await Object.keys(this.currencies[0].rates);
+    this.mainframe.currentCountry = await this.currencies[0];
+    this.mainframe.rates = await this.currencies[0].rates;
+    this.dataReady = true;
   }
 
-  // Event handler for catching the user input
-
-  setCountry(country: ICurrency, value) {
+  // function sets the current conversion country according to user input and converts
+  setCountry(country: Currency, value) {
     this.mainframe.currentCountry = country;
-    console.log(this.mainframe.currentCountry);
     this.mainframe.rates = country.rates;
-    console.log(this.mainframe.rates);
-    console.log(this.mainframe.conversionCountry);
     this.mainframe.convert(value);
   }
-
-  setRate(country: string, rate) {
-    this.mainframe.conversionCountry = country;
-    console.log(this.mainframe.conversionCountry);
+  //  function sets country converting to according to user input and converts
+  setRate(convertCountry?: string, rate?: number) {
+    this.mainframe.conversionCountry = convertCountry;
     this.mainframe.convert(rate);
   }
 
-  // clear function
+  // clear function that clears user input when they click on the input box, for convienence.
 
   clear(name: string) {
     if (name === 'inputLeft') {
@@ -73,13 +93,6 @@ export class MainContentComponent implements OnInit {
     }
   }
 
-  // function that sets currencies array to default values
-
-
-  // functions that sets conversion variables above based on user selection
-
-
-
 
   decrease(rate) {
     if (this.decimalPlaces > 0) {
@@ -87,7 +100,7 @@ export class MainContentComponent implements OnInit {
       this.mainframe.decimalPlace--;
       this.mainframe.convert(rate);
     }
-    console.log(this.api.localList);
+
   }
   increase(rate) {
     console.log(this.currencies[0]);

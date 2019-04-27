@@ -1,4 +1,4 @@
-<div class="row-two">
+<div *ngIf="dataReady" class="row-two">
   <div class="conversion-box">
 
     <!-- DROP DOWN BUTTON -->
@@ -11,7 +11,7 @@
       </ul>
     </div>
    <!-- INPUT FIELD FOR CONVERSION -->
-      <input class="input-style" [disabled]="this.mainframe.conversionCountry === 'Pick a Currency'" [(ngModel)]="resultL" name="inputLeft" (click)="clear(resultLeft.name)" (keyup)="this.mainframe.convert(resultLeft.value)" type="number" placeholder="type amount here" #resultLeft>
+      <input class="input-style" [disabled]="this.mainframe.conversionCountry === 'Pick a Currency'" [(ngModel)]="resultL" name="inputLeft" (click)="clear(resultLeft.name)" (keyup)="this.mainframe.convert(resultLeft.value)" type="number" placeholder="Type Amount Here" #resultLeft>
   </div>
   <div class="conversion-box">
 
@@ -20,7 +20,7 @@
       <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle" aria-controls="dropdown-basic">
        {{this.mainframe.conversionCountry}} <span class="caret"></span>
       </button>
-      <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+      <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu scroll" role="menu" aria-labelledby="button-basic">
         <li (click)="setRate(key, resultLeft.value)" *ngFor="let key of conversionLabels; let i = index" role="menuitem"><a [ngStyle]="fontFamily" class="dropdown-item" href="#">{{key}}</a></li>
       </ul>
     </div>
