@@ -47,4 +47,5 @@ export class MainframeService {
     this.resultRightHandSide = (userInput * this.rate).toFixed(this.decimalPlace);
     this.leftHandSide = userInput;
   }
+
 }
