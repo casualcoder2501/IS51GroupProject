@@ -51,10 +51,10 @@ export class MainContentComponent implements OnInit {
 
   setCountry(country: ICurrency, value) {
     this.mainframe.currentCountry = country;
-    console.log(this.mainframe.currentCountry)
+    console.log(this.mainframe.currentCountry);
     this.mainframe.rates = country.rates;
     console.log(this.mainframe.rates);
-    console.log(this.mainframe.conversionCountry)
+    console.log(this.mainframe.conversionCountry);
     this.mainframe.convert(value);
   }
 
