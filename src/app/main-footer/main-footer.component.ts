@@ -32,13 +32,13 @@ export class MainFooterComponent implements OnInit {
         this.mainframe.historyOverflow.unshift(this.mainframe.history[3]);
         this.mainframe.history.splice(3, 1);
         this.mainframe.history.unshift({
-          countryLeft: this.mainframe.conversionLHS.country,
-          countryRight: this.mainframe.conversionRHS.country,
-          denominationLeft: this.mainframe.conversionLHS.denomination,
-          denominationRight: this.mainframe.conversionRHS.denomination,
-          symbolLeft: this.mainframe.conversionLHS.symbol,
-          symbolRight: this.mainframe.conversionRHS.symbol,
-          conversionLeft: this.mainframe.resultLeftHandSide,
+          countryLeft: this.mainframe.currentCountry,
+          countryRight: this.mainframe.conversionCountry,
+          // denominationLeft: this.mainframe.conversionLHS.denomination,
+          // denominationRight: this.mainframe.conversionRHS.denomination,
+          // symbolLeft: this.mainframe.conversionLHS.symbol,
+          // symbolRight: this.mainframe.conversionRHS.symbol,
+          conversionLeft: this.mainframe.leftHandSide,
           conversionRight: this.mainframe.resultRightHandSide
         });
 
@@ -46,13 +46,13 @@ export class MainFooterComponent implements OnInit {
 
       } else {
         this.mainframe.history.unshift({
-          countryLeft: this.mainframe.conversionLHS.country,
-          countryRight: this.mainframe.conversionRHS.country,
-          denominationLeft: this.mainframe.conversionLHS.denomination,
-          denominationRight: this.mainframe.conversionRHS.denomination,
-          symbolLeft: this.mainframe.conversionLHS.symbol,
-          symbolRight: this.mainframe.conversionRHS.symbol,
-          conversionLeft: this.mainframe.resultLeftHandSide,
+          countryLeft: this.mainframe.currentCountry,
+          countryRight: this.mainframe.conversionCountry,
+          // denominationLeft: this.mainframe.conversionLHS.denomination,
+          // denominationRight: this.mainframe.conversionRHS.denomination,
+          // symbolLeft: this.mainframe.conversionLHS.symbol,
+          // symbolRight: this.mainframe.conversionRHS.symbol,
+          conversionLeft: this.mainframe.leftHandSide,
           conversionRight: this.mainframe.resultRightHandSide
         });
         // console.log(this.mainframe.history);

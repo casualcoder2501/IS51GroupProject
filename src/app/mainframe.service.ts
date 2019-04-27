@@ -8,14 +8,14 @@ export interface ICurrency {
 }
 
 interface IHistory {
-  countryLeft: string;
+  countryLeft: any;
   countryRight: string;
-  denominationLeft: string;
-  denominationRight: string;
-  symbolLeft: string;
-  symbolRight: string;
+  // denominationLeft: string;
+  // denominationRight: string;
+  // symbolLeft: string;
+  // symbolRight: string;
   conversionLeft: number;
-  conversionRight: number;
+  conversionRight: string;
 }
 
 @Injectable({
@@ -24,11 +24,12 @@ interface IHistory {
 
 export class MainframeService {
   // store the current values for conversion
-  currentCountry: ICurrency = this.api.localList[0] // Country converting from
-  conversionCountry: string = 'Pick a Currency'; // Country converting to. These are set to defaults
+  currentCountry: ICurrency = this.api.localList[0]; // Country converting from
+  conversionCountry = 'Pick a Currency'; // Country converting to. These are set to defaults
   resultRightHandSide: string; // the result of the conversion, set by convert function below
   rates = this.api.localList[0].rates; // array of rates, default is [0] which is USD conversion rates
   rate; // the rate is set by the convert function below
+  leftHandSide: number;
 
   decimalPlace = 2;
 
@@ -44,9 +45,6 @@ export class MainframeService {
       }
     }
     this.resultRightHandSide = (userInput * this.rate).toFixed(this.decimalPlace);
+    this.leftHandSide = userInput;
   }
-
-  constructor() { }
-
-
 }

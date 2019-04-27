@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MainframeService } from '../mainframe.service';
 import { ApiService } from '../api.service';
-import {ICurrency} from '../mainframe.service';
+import { ICurrency } from '../mainframe.service';
 
 @Component({
   selector: 'app-main-content',
@@ -15,7 +15,7 @@ export class MainContentComponent implements OnInit {
   };
   // array that contains currency objects
 
-  currencies = this.api.localList; //default is local storage
+  currencies = this.api.localList; // default is local storage
 
   resultL: string;
   decimalPlaces = 2;
@@ -33,21 +33,21 @@ export class MainContentComponent implements OnInit {
   }
 
 
-// Makes http call to get our conversion array only if the local storage is empty, 
-// also sets labels for conversion countries. 
-// If it makes the http call it saves it to local storage
+  // Makes http call to get our conversion array only if the local storage is empty,
+  // also sets labels for conversion countries.
+  // If it makes the http call it saves it to local storage
   loadUp() {
     if (this.api.localList === null || this.api.localList.length === 0) {
-      this.api.httpCall(this.api.currencyList); //Makes Http call if condition is true
-      setTimeout(() => this.api.saveCurrenciesToLocalStorage(), 2500); //waits 2.5 seconds to save currency list to local storage
+      this.api.httpCall(this.api.currencyList); // Makes Http call if condition is true
+      setTimeout(() => this.api.saveCurrenciesToLocalStorage(), 2500); // waits 2.5 seconds to save currency list to local storage
 
     } else {
       this.currencies = this.api.localList; // if statement is false pulls currencies from local storage
     }
-    this.conversionLabels = Object.keys(this.currencies[0].rates)
+    this.conversionLabels = Object.keys(this.currencies[0].rates);
   }
 
-  // Event handler for catching the user input 
+  // Event handler for catching the user input
 
   setCountry(country: ICurrency, value) {
     this.mainframe.currentCountry = country;
@@ -64,13 +64,13 @@ export class MainContentComponent implements OnInit {
     this.mainframe.convert(rate);
   }
 
-// clear function
+  // clear function
 
   clear(name: string) {
     if (name === 'inputLeft') {
       this.resultL = null;
       this.mainframe.resultRightHandSide = null;
-    } 
+    }
   }
 
   // function that sets currencies array to default values

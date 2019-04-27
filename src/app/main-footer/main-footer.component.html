@@ -22,13 +22,13 @@
             <tbody style="font-family:Arial;font-weight: bold">
                 <tr *ngFor="let detail of mainframe.history; let i = index">
                     <td>{{detail.countryLeft}}</td>
-                    <td>{{detail.denominationLeft}}</td>
-                    <td>{{detail.symbolLeft}}</td>
+                    <!-- <td>{{detail.denominationLeft}}</td>
+                    <td>{{detail.symbolLeft}}</td> -->
                     <td>{{detail.conversionLeft}}</td>
                     <td>=</td>
                     <td>{{detail.countryRight}}</td>
-                    <td>{{detail.denominationRight}}</td>
-                    <td>{{detail.symbolRight}}</td>
+                    <!-- <td>{{detail.denominationRight}}</td>
+                    <td>{{detail.symbolRight}}</td> -->
                     <td>{{detail.conversionRight}}</td>
                     <td><button (click)="delete(i, 'base')" mat-raised-button type="button" class="btn btn-danger">X</button>
                     </td>
@@ -43,13 +43,13 @@
             <tbody style="font-family:Arial;font-weight: bold">
                 <tr *ngFor="let detail of mainframe.historyOverflow; let i = index">
                     <td>{{detail.countryLeft}}</td>
-                    <td>{{detail.denominationLeft}}</td>
-                    <td>{{detail.symbolLeft}}</td>
+                    <!-- <td>{{detail.denominationLeft}}</td>
+                    <td>{{detail.symbolLeft}}</td> -->
                     <td>{{detail.conversionLeft}}</td>
                     <td>=</td>
                     <td>{{detail.countryRight}}</td>
-                    <td>{{detail.denominationRight}}</td>
-                    <td>{{detail.symbolRight}}</td>
+                    <!-- <td>{{detail.denominationRight}}</td>
+                    <td>{{detail.symbolRight}}</td> -->
                     <td>{{detail.conversionRight}}</td>
                     <td><button (click)="delete(i, overflow)" mat-raised-button type="button" class="btn btn-danger">X</button>
                     </td>
