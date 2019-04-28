@@ -28,6 +28,7 @@ body {
     display: grid;
     border: black 1px solid;
     height: 100%;
+    width: 100vw;
     align-items: center;
     justify-content: center;
     padding: 50px;

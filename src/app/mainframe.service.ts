@@ -1,11 +1,7 @@
 import { Injectable } from '@angular/core';
-
+import { Currency } from './currency.model';
 import { ApiService } from './api.service';
-export interface ICurrency {
-  base: string;
-  rate: string;
-  rates: string;
-}
+
 
 interface IHistory {
   countryLeft: any;
@@ -24,10 +20,10 @@ interface IHistory {
 
 export class MainframeService {
   // store the current values for conversion
-  currentCountry: ICurrency = this.api.localList[0]; // Country converting from
+  currentCountry: Currency; // Country converting from
   conversionCountry = 'Pick a Currency'; // Country converting to. These are set to defaults
   resultRightHandSide: string; // the result of the conversion, set by convert function below
-  rates = this.api.localList[0].rates; // array of rates, default is [0] which is USD conversion rates
+  rates; // array of rates, default is [0] which is USD conversion rates
   rate; // the rate is set by the convert function below
   leftHandSide: number;
 
@@ -39,7 +35,7 @@ export class MainframeService {
   constructor(private api: ApiService) { }
 
   convert(userInput: number) {
-    for (let [key, value] of Object.entries(this.rates)) {
+    for (const [key, value] of Object.entries(this.rates)) {
       if (key === this.conversionCountry) {
         this.rate = value;
       }
