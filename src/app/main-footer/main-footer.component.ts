@@ -32,7 +32,7 @@ export class MainFooterComponent implements OnInit {
         this.mainframe.historyOverflow.unshift(this.mainframe.history[3]);
         this.mainframe.history.splice(3, 1);
         this.mainframe.history.unshift({
-          countryLeft: this.mainframe.currentCountry,
+          countryLeft: this.mainframe.currentCountry.base,
           countryRight: this.mainframe.conversionCountry,
           // denominationLeft: this.mainframe.conversionLHS.denomination,
           // denominationRight: this.mainframe.conversionRHS.denomination,
@@ -46,7 +46,7 @@ export class MainFooterComponent implements OnInit {
 
       } else {
         this.mainframe.history.unshift({
-          countryLeft: this.mainframe.currentCountry,
+          countryLeft: this.mainframe.currentCountry.base,
           countryRight: this.mainframe.conversionCountry,
           // denominationLeft: this.mainframe.conversionLHS.denomination,
           // denominationRight: this.mainframe.conversionRHS.denomination,
