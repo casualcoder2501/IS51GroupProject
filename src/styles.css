@@ -14,7 +14,7 @@ body {
 
 .main-page {
     display: grid;
-    grid-template-rows: 3fr 9fr 6fr;
+    grid-template-rows: 3fr 9fr 7fr;
     height: 100%;
 }
 .row-one {
@@ -32,10 +32,11 @@ body {
     align-items: center;
     justify-content: center;
     padding: 50px;
+    background-color: aqua;
 }
 
 .row-three {
-    grid-template-columns: 3fr 4fr 4fr 3fr;
+    grid-template-columns: 2fr 4fr 4fr 4fr 2fr;
     justify-content: center;
     display: grid;
     border: black 1px none;
@@ -43,6 +44,7 @@ body {
     width: 100vw;
     padding: .5px;
     margin: 5px;
+    max-height: 2cm;
 }
 .padding{
     padding: 12px;
@@ -68,6 +70,12 @@ body {
     margin: 5px;
 
 }
+
+.smallButton {
+    margin: 2px;
+
+}
+
 .input {
     box-shadow: 1px 1px black;
 }
@@ -103,5 +111,5 @@ body {
 
 .large-line-break{
     width:100%;
-    height: 10px;
+    height: 5px;
 }

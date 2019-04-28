@@ -4,6 +4,10 @@
     position: relative;
 }
 
+.footerRowTwo{
+    grid-template-columns: 3fr 4fr 4fr 3fr;
+}
+
 .arrayBox{
     text-align: center
 }

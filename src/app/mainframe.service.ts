@@ -31,6 +31,11 @@ export class MainframeService {
 
   history: Array<IHistory> = [];
   historyOverflow: Array<IHistory> = [];
+  historyOverflowTwo: Array<IHistory> = [];
+  randomNumber: number;
+  resultSymbolsArray: ['A$', 'Лв.', 'R$', 'Can$', 'Fr.', '¥', 'Kč', 'Kr.', '€', '£', 'HK$', 'kn', 'Ft',
+        'Rp', '₪', '₹', 'Íkr', '¥', '₩', 'Mex$', 'RM', 'kr', '$', '₱', 'zł', 'lei', '₽', 'kr', 'S$', '฿', '₺',
+        '$', 'R'];
 
   constructor(private api: ApiService) { }
 

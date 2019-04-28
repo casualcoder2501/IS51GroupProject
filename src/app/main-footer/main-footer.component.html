@@ -5,21 +5,17 @@
                 <button mat-raised-button (click)=saveConversion() type="button" class="btn btn-success">Save
                     Conversion</button>
             </div>
-            <div class="large-line-break"></div>
-            <div>
+            <div style="text-align:center">
                 <button mat-raised-button (click)=clearHistory() type="button" class="btn btn-danger">Clear
                     History</button>
             </div>
         </div>
     </div>
     <div class="arrayBox">
-        <div class="no-items" *ngIf="mainframe.history.length === 0">
-            <h5>No history has been saved</h5>
-        </div>
         <table class="table-grid" *ngIf="mainframe.history.length > 0">
             <thead>
             </thead>
-            <tbody style="font-family:Arial;font-weight: bold">
+            <tbody style="font-family:Arial;font-size: 8pt">
                 <tr *ngFor="let detail of mainframe.history; let i = index">
                     <td>{{detail.countryLeft}}</td>
                     <!-- <td>{{detail.denominationLeft}}</td>
@@ -30,17 +26,24 @@
                     <!-- <td>{{detail.denominationRight}}</td>
                     <td>{{detail.symbolRight}}</td> -->
                     <td>{{detail.conversionRight}}</td>
-                    <td><button (click)="delete(i, 'base')" mat-raised-button type="button" class="btn btn-danger">X</button>
+                    <td><button (click)="edit(i, 'base')" mat-raised-button type="button"
+                            class="btn btn-sm btn-info col-xs-11">Edit</button>
+                    </td>
+                    <td><button (click)="delete(i, 'base')" mat-raised-button type="button"
+                            class="btn btn-sm btn-danger col-xs-11">X</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
     <div class="arrayBox">
+        <div class="no-items" *ngIf="mainframe.history.length === 0">
+            <h6>No history has been saved</h6>
+        </div>
         <table class="table-grid" *ngIf="mainframe.history.length > 0">
             <thead>
             </thead>
-            <tbody style="font-family:Arial;font-weight: bold">
+            <tbody style="font-family:Arial;font-size: 8pt">
                 <tr *ngFor="let detail of mainframe.historyOverflow; let i = index">
                     <td>{{detail.countryLeft}}</td>
                     <!-- <td>{{detail.denominationLeft}}</td>
@@ -51,13 +54,45 @@
                     <!-- <td>{{detail.denominationRight}}</td>
                     <td>{{detail.symbolRight}}</td> -->
                     <td>{{detail.conversionRight}}</td>
-                    <td><button (click)="delete(i, overflow)" mat-raised-button type="button" class="btn btn-danger">X</button>
+                    <td><button (click)="edit(i, 'overflow')" mat-raised-button type="button"
+                            class="btn btn-sm btn-info col-xs-11">Edit</button>
+                    <td><button (click)="delete(i, 'overflow')" mat-mini-fab type="button"
+                            class="btn btn-danger">X</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="arrayBox">
+        <table class="table-grid" *ngIf="mainframe.history.length > 0">
+            <thead>
+            </thead>
+            <tbody style="font-family:Arial;font-size: 8pt">
+                <tr *ngFor="let detail of mainframe.historyOverflowTwo; let i = index">
+                    <td>{{detail.countryLeft}}</td>
+                    <!-- <td>{{detail.denominationLeft}}</td>
+                        <td>{{detail.symbolLeft}}</td> -->
+                    <td>{{detail.conversionLeft}}</td>
+                    <td>=</td>
+                    <td>{{detail.countryRight}}</td>
+                    <!-- <td>{{detail.denominationRight}}</td>
+                        <td>{{detail.symbolRight}}</td> -->
+                    <td>{{detail.conversionRight}}</td>
+                    <td><button (click)="edit(i, 'overflowTwo')" mat-raised-button type="button"
+                            class="btn btn-sm btn-info col-xs-11">Edit</button>
+                    </td>
+                    <td><button (click)="delete(i, 'overflowTwo')" mat-raised-button type="button"
+                            class="btn btn-sm btn-danger col-xs-11">X</button>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
     <div class="padding">
+        <div>
+            <button mat-raised-button (click)="randomCurrency()" type="button" class="btn btn-warning">Random
+                Currency Generator</button>
+        </div>
     </div>
 </div>
 
