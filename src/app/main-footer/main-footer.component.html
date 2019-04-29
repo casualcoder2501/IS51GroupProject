@@ -20,17 +20,25 @@
                     <td>{{detail.countryLeft}}</td>
                     <!-- <td>{{detail.denominationLeft}}</td>
                     <td>{{detail.symbolLeft}}</td> -->
-                    <td>{{detail.conversionLeft}}</td>
+                    <td *ngIf="detail.editMode">
+                        <input [(ngModel)]="detail.conversionLeft" type="string" class="form-control"
+                            placeholder="input"></td>
+                    <td *ngIf="!detail.editMode">{{detail.conversionLeft}}</td>
                     <td>=</td>
                     <td>{{detail.countryRight}}</td>
                     <!-- <td>{{detail.denominationRight}}</td>
                     <td>{{detail.symbolRight}}</td> -->
                     <td>{{detail.conversionRight}}</td>
-                    <td><button (click)="edit(i, 'base')" mat-raised-button type="button"
-                            class="btn btn-sm btn-info col-xs-11">Edit</button>
-                    </td>
-                    <td><button (click)="delete(i, 'base')" mat-raised-button type="button"
-                            class="btn btn-sm btn-danger col-xs-11">X</button>
+                    <td>
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                            <button (click)="edit(i, 'base')" mat-raised-button type="button"
+                                class="btn btn-info">Edit</button>
+                            <button (click)="save(i, 'base')" mat-raised-button type="button"
+                                class="btn btn-success">Save</button>
+                            <button (click)="delete(i, 'base')" mat-raised-button type="button"
+                                class="btn btn-danger">X</button>
+
+                        </div>
                     </td>
                 </tr>
             </tbody>
@@ -48,16 +56,25 @@
                     <td>{{detail.countryLeft}}</td>
                     <!-- <td>{{detail.denominationLeft}}</td>
                     <td>{{detail.symbolLeft}}</td> -->
-                    <td>{{detail.conversionLeft}}</td>
+                    <td *ngIf="detail.editMode">
+                        <input [(ngModel)]="detail.conversionLeft" type="number" class="form-control"
+                            placeholder="input"></td>
+                    <td *ngIf="!detail.editMode">{{detail.conversionLeft}}</td>
                     <td>=</td>
                     <td>{{detail.countryRight}}</td>
                     <!-- <td>{{detail.denominationRight}}</td>
                     <td>{{detail.symbolRight}}</td> -->
                     <td>{{detail.conversionRight}}</td>
-                    <td><button (click)="edit(i, 'overflow')" mat-raised-button type="button"
-                            class="btn btn-sm btn-info col-xs-11">Edit</button>
-                    <td><button (click)="delete(i, 'overflow')" mat-mini-fab type="button"
-                            class="btn btn-danger">X</button>
+                    <td>
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                            <button (click)="edit(i, 'overflow')" mat-raised-button type="button"
+                                class="btn btn-info">Edit</button>
+                            <button (click)="save(i, 'overflow')" mat-raised-button type="button"
+                                class="btn btn-success">Save</button>
+                            <button (click)="delete(i, 'overflow')" mat-raised-button type="button"
+                                class="btn btn-danger">X</button>
+
+                        </div>
                     </td>
                 </tr>
             </tbody>
@@ -72,17 +89,25 @@
                     <td>{{detail.countryLeft}}</td>
                     <!-- <td>{{detail.denominationLeft}}</td>
                         <td>{{detail.symbolLeft}}</td> -->
-                    <td>{{detail.conversionLeft}}</td>
+                    <td *ngIf="detail.editMode">
+                        <input [(ngModel)]="detail.conversionLeft" type="number" class="form-control"
+                            placeholder="input"></td>
+                    <td *ngIf="!detail.editMode">{{detail.conversionLeft}}</td>
                     <td>=</td>
                     <td>{{detail.countryRight}}</td>
                     <!-- <td>{{detail.denominationRight}}</td>
                         <td>{{detail.symbolRight}}</td> -->
                     <td>{{detail.conversionRight}}</td>
-                    <td><button (click)="edit(i, 'overflowTwo')" mat-raised-button type="button"
-                            class="btn btn-sm btn-info col-xs-11">Edit</button>
-                    </td>
-                    <td><button (click)="delete(i, 'overflowTwo')" mat-raised-button type="button"
-                            class="btn btn-sm btn-danger col-xs-11">X</button>
+                    <td>
+                        <div class="btn-group btn-group-sm" role="group" aria-label="Basic example" style="font-family:Arial;font-size: 8pt">
+                            <button (click)="edit(i, 'overFlowTwo')" mat-raised-button type="button"
+                                class="btn btn-info">Edit</button>
+                            <button (click)="save(i, 'overFlowTwo')" mat-raised-button type="button"
+                                class="btn btn-success">Save</button>
+                            <button (click)="delete(i, 'overflowTwo')" mat-raised-button type="button"
+                                class="btn btn-danger">X</button>
+
+                        </div>
                     </td>
                 </tr>
             </tbody>

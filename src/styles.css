@@ -14,7 +14,7 @@ body {
 
 .main-page {
     display: grid;
-    grid-template-rows: 3fr 9fr 7fr;
+    grid-template-rows: 3fr 10fr 8fr;
     height: 100%;
 }
 .row-one {

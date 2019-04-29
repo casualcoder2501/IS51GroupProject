@@ -11,7 +11,8 @@ interface IHistory {
   // symbolLeft: string;
   // symbolRight: string;
   conversionLeft: number;
-  conversionRight: string;
+  conversionRight: any;
+  editMode: boolean;
 }
 
 @Injectable({
@@ -26,6 +27,10 @@ export class MainframeService {
   rates; // array of rates, default is [0] which is USD conversion rates
   rate; // the rate is set by the convert function below
   leftHandSide: number;
+  rightHandSide: string;
+  editConversion = false;
+  index: number;
+  conversionCountryEdit: string;
 
   decimalPlace = 2;
 
@@ -33,20 +38,31 @@ export class MainframeService {
   historyOverflow: Array<IHistory> = [];
   historyOverflowTwo: Array<IHistory> = [];
   randomNumber: number;
+  newArray: Array<IHistory> = [];
   resultSymbolsArray: ['A$', 'Лв.', 'R$', 'Can$', 'Fr.', '¥', 'Kč', 'Kr.', '€', '£', 'HK$', 'kn', 'Ft',
-        'Rp', '₪', '₹', 'Íkr', '¥', '₩', 'Mex$', 'RM', 'kr', '$', '₱', 'zł', 'lei', '₽', 'kr', 'S$', '฿', '₺',
-        '$', 'R'];
+    'Rp', '₪', '₹', 'Íkr', '¥', '₩', 'Mex$', 'RM', 'kr', '$', '₱', 'zł', 'lei', '₽', 'kr', 'S$', '฿', '₺',
+    '$', 'R'];
 
   constructor(private api: ApiService) { }
 
   convert(userInput: number) {
-    for (const [key, value] of Object.entries(this.rates)) {
-      if (key === this.conversionCountry) {
-        this.rate = value;
-      }
-    }
-    this.resultRightHandSide = (userInput * this.rate).toFixed(this.decimalPlace);
     this.leftHandSide = userInput;
+    if (this.editConversion === false) {
+      for (const [key, value] of Object.entries(this.rates)) {
+        if (key === this.conversionCountry) {
+          this.rate = value;
+        }
+      }
+      this.resultRightHandSide = (userInput * this.rate).toFixed(this.decimalPlace);
+    } else {
+      for (const [key, value] of Object.entries(this.rates)) {
+        if (key === this.conversionCountryEdit) {
+          this.rate = value;
+        }
+      }
+      this.rightHandSide = (userInput * this.rate).toFixed(this.decimalPlace);
+      this.editConversion = false;
+    }
   }
 
 }
