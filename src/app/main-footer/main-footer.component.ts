@@ -29,6 +29,7 @@ export class MainFooterComponent implements OnInit {
   }
 
   saveConversion() {
+    this.toast.showToast('warning', 5000, 'Please select a currency!');
     // const apiObject = this.api.localList[0];
     // const rate = Object.entries(apiObject.rates);
     // const rateHolder = rate[this.api.currencyList.indexOf(this.mainframe.conversionCountry)];
@@ -39,10 +40,14 @@ export class MainFooterComponent implements OnInit {
     // console.log('nationleft', this.mainframe.conversionLHS.denomination,
     //   'nationright', this.mainframe.conversionRHS.denomination);
     if (this.mainframe.conversionCountry === 'Pick a Currency') {
-      this.toast.showToast('danger', 5000, 'Please select a currency!');
+      this.toast.showToast('warning', 5000, 'Please select a currency!');
+      this.errorMessage = 'Please select a currency!';
+      alert(this.errorMessage);
     } else {
     if (this.mainframe.historyOverflowTwo.length > 2) {
       this.toast.showToast('danger', 5000, 'History full. Please delete atleast one segment.');
+      this.errorMessage = 'History full. Please delete atleast one segment.';
+      alert(this.errorMessage);
     } else {
       if (this.mainframe.historyOverflow.length > 2) {
         this.mainframe.historyOverflowTwo.unshift(this.mainframe.historyOverflow[2]);

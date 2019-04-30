@@ -3,7 +3,7 @@
 
     <!-- DROP DOWN BUTTON -->
     <div class="btn-group" dropdown>
-      <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle" aria-controls="dropdown-basic">
+      <button id="button-basic" dropdownToggle type="button" class="btn-sm btn-primary dropdown-toggle" aria-controls="dropdown-basic">
         {{this.mainframe.currentCountry.base}}<span class="caret"></span>
       </button>
       <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
@@ -17,7 +17,7 @@
 
      <!-- DROP DOWN BUTTON -->
     <div class="btn-group" dropdown>
-      <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle" aria-controls="dropdown-basic">
+      <button id="button-basic" dropdownToggle type="button" class="btn-sm btn-primary dropdown-toggle" aria-controls="dropdown-basic">
        {{this.mainframe.conversionCountry}} <span class="caret"></span>
       </button>
       <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu scroll" role="menu" aria-labelledby="button-basic">
@@ -31,8 +31,8 @@
   <div class="decimal-box">
     <p style="font-family:Arial;font-weight: bold">Decimal Places</p>
     <div class="line-break"></div>
-      <button (click)="decrease(resultLeft.value)" type="button" class="btn btn-danger">-</button>
-      <input class="input-decimal" [(ngModel)]="decimalPlaces"> 
-      <button (click)="increase(resultLeft.value)" type="button" class="btn btn-success">+</button>
+      <button (click)="decrease(resultLeft.value)" type="button" class="btn-sm btn-danger">-</button>
+      <input class="input-decimal" style="align-content: center" [(ngModel)]="decimalPlaces"> 
+      <button (click)="increase(resultLeft.value)" type="button" class="btn-sm btn-success">+</button>
 </div>
 </div>
