@@ -11,7 +11,7 @@
       </ul>
     </div>
    <!-- INPUT FIELD FOR CONVERSION -->
-      <input class="input-style" [disabled]="this.mainframe.conversionCountry === 'Pick a Currency'" [(ngModel)]="resultL" name="inputLeft" (click)="clear(resultLeft.name)" (keyup)="this.mainframe.convert(resultLeft.value)" type="number" placeholder="Type Amount Here" #resultLeft>
+      <input class="input-style" id="reset"[disabled]="this.mainframe.conversionCountry === 'Pick a Currency'" [(ngModel)]="resultL" name="inputLeft" (click)="clear(resultLeft.name)" (keyup)="this.mainframe.convert(resultLeft.value)" type="number" placeholder="Type Amount Here" #resultLeft>
   </div>
   <div class="conversion-box">
 

@@ -2,12 +2,12 @@
     <div>
         <div class="center-height fill">
             <div>
-                <button mat-raised-button (click)=saveConversion() type="button" class="btn-sm btn-success">Save
-                    Conversion</button>
+                <button mat-raised-button (click)=saveConversion() type="button" class="btn-sm btn-success">Save Conversion
+                </button>
             </div>
             <div style="text-align:center">
-                <button mat-raised-button (click)=clearHistory() type="button" class="btn-sm btn-danger">Clear
-                    History</button>
+                <button mat-raised-button (click)=clearHistory() type="button" class="btn-sm btn-danger">Clear History
+                </button>
             </div>
         </div>
     </div>
@@ -19,8 +19,7 @@
                     <!-- <td>{{detail.denominationLeft}}</td>
                     <td>{{detail.symbolLeft}}</td> -->
                     <td *ngIf="detail.editMode">
-                        <input [(ngModel)]="detail.conversionLeft" type="string" class="form-control"
-                            placeholder="input"></td>
+                        <input [(ngModel)]="detail.conversionLeft" type="string" class="form-control" placeholder="input"></td>
                     <td *ngIf="!detail.editMode">{{detail.conversionLeft}}</td>
                     <td>=</td>
                     <td>{{detail.countryRight}}</td>
@@ -29,12 +28,9 @@
                     <td>{{detail.conversionRight}}</td>
                     <td>
                         <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                            <button (click)="edit(i, 'base')" mat-raised-button type="button"
-                                class="buttonEdit btn btn-info" style="font-size: 8pt">✎</button>
-                            <button (click)="save(i, 'base')" mat-raised-button type="button"
-                                class="buttonEdit btn btn-success" style="font-size: 8pt">✔</button>
-                            <button (click)="delete(i, 'base')" mat-raised-button type="button"
-                                class="buttonEdit btn btn-danger"style="font-size: 8pt">X</button>
+                            <button (click)="edit(i, 'base')" mat-raised-button type="button" class="buttonEdit btn btn-info" style="font-size: 8pt">✎</button>
+                            <button (click)="save(i, 'base')" mat-raised-button type="button" class="buttonEdit btn btn-success" style="font-size: 8pt">✔</button>
+                            <button (click)="delete(i, 'base')" mat-raised-button type="button" class="buttonEdit btn btn-danger" style="font-size: 8pt">X</button>
 
                         </div>
                     </td>
@@ -55,8 +51,7 @@
                     <!-- <td>{{detail.denominationLeft}}</td>
                     <td>{{detail.symbolLeft}}</td> -->
                     <td *ngIf="detail.editMode">
-                        <input class="input-style" [(ngModel)]="detail.conversionLeft" type="number" class="form-control"
-                            placeholder="input"></td>
+                        <input class="input-style" [(ngModel)]="detail.conversionLeft" type="number" class="form-control" placeholder="input"></td>
                     <td *ngIf="!detail.editMode">{{detail.conversionLeft}}</td>
                     <td>=</td>
                     <td>{{detail.countryRight}}</td>
@@ -65,12 +60,9 @@
                     <td>{{detail.conversionRight}}</td>
                     <td>
                         <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                            <button (click)="edit(i, 'overflow')" mat-raised-button type="button"
-                                class="buttonEdit btn btn-info" style="font-size: 8pt">✎</button>
-                            <button (click)="save(i, 'overflow')" mat-raised-button type="button"
-                                class="buttonEdit btn btn-success"style="font-size: 8pt">✔</button>
-                            <button (click)="delete(i, 'overflow')" mat-raised-button type="button"
-                                class="buttonEdit btn btn-danger"style="font-size: 8pt">X</button>
+                            <button (click)="edit(i, 'overflow')" mat-raised-button type="button" class="buttonEdit btn btn-info" style="font-size: 8pt">✎</button>
+                            <button (click)="save(i, 'overflow')" mat-raised-button type="button" class="buttonEdit btn btn-success" style="font-size: 8pt">✔</button>
+                            <button (click)="delete(i, 'overflow')" mat-raised-button type="button" class="buttonEdit btn btn-danger" style="font-size: 8pt">X</button>
 
                         </div>
                     </td>
@@ -88,8 +80,7 @@
                     <!-- <td>{{detail.denominationLeft}}</td>
                         <td>{{detail.symbolLeft}}</td> -->
                     <td *ngIf="detail.editMode">
-                        <input [(ngModel)]="detail.conversionLeft" type="number" class="form-control"
-                            placeholder="input"></td>
+                        <input [(ngModel)]="detail.conversionLeft" type="number" class="form-control" placeholder="input"></td>
                     <td *ngIf="!detail.editMode">{{detail.conversionLeft}}</td>
                     <td>=</td>
                     <td>{{detail.countryRight}}</td>
@@ -98,12 +89,9 @@
                     <td>{{detail.conversionRight}}</td>
                     <td>
                         <div class="btn-group btn-group-sm" role="group" aria-label="Basic example" style="font-family:Arial;font-size: 8pt">
-                            <button (click)="edit(i, 'overFlowTwo')" mat-raised-button type="button"
-                                class="buttonEdit btn btn-info" style="font-size: 8pt">✎</button>
-                            <button (click)="save(i, 'overFlowTwo')" mat-raised-button type="button"
-                                class="buttonEdit btn btn-success" style="font-size: 8pt">✔</button>
-                            <button (click)="delete(i, 'overflowTwo')" mat-raised-button type="button"
-                                class="buttonEdit btn btn-danger" style="font-size: 8pt">X</button>
+                            <button (click)="edit(i, 'overFlowTwo')" mat-raised-button type="button" class="buttonEdit btn btn-info" style="font-size: 8pt">✎</button>
+                            <button (click)="save(i, 'overFlowTwo')" mat-raised-button type="button" class="buttonEdit btn btn-success" style="font-size: 8pt">✔</button>
+                            <button (click)="delete(i, 'overflowTwo')" mat-raised-button type="button" class="buttonEdit btn btn-danger" style="font-size: 8pt">X</button>
 
                         </div>
                     </td>
@@ -111,14 +99,33 @@
             </tbody>
         </table>
     </div>
-    <div>
-    <div class="center-height fill">
-        <div>
-            <button mat-raised-button (click)="randomCurrency()" type="button" class="btn-sm btn-warning vertical-center">Random
-                Currency Generator</button>
+    <!-- <div>
+        <div class="row">
+            <div class="d-flex flex-column center-height fill">
+                <div>
+                    <button mat-raised-button (click)="randomCurrency()" type="button" class="btn-sm btn-warning vertical-center">Random
+                        Currency Generator</button>
+                </div>
+            </div>
+            <div class=" d-flex flex-column center-height fill">
+                    <div>
+                        <button mat-raised-button (click)="reset()" type="button" class="btn-sm btn-warning vertical-center">Reset</button>
+                    </div>
+                </div>
         </div>
-    </div>
-</div>
+    </div> -->
+    <div>
+            <div class="center-height fill">
+                <div>
+                    <button mat-raised-button (click)=randomCurrency() type="button" class="btn-sm btn-success">Random Currency Generator
+                    </button>
+                </div>
+                <div style="text-align:center">
+                    <button mat-raised-button (click)=reset() type="button" class="btn-sm btn-danger">Reset
+                    </button>
+                </div>
+            </div>
+        </div>
 </div>
 
 <!-- <app-flex-modal #flex1
