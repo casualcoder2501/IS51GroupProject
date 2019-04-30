@@ -25,7 +25,7 @@
     <div class="padding">Logo</div>
     <div class="padding">
         <a class="navbar-brand">Navigation</a>
-        <ul class="navbar-nav mr-auto">
+        <!-- <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
             </li>
@@ -35,19 +35,31 @@
             <li class="nav-item active">
                 <a class="nav-link" href="history">History <span class="sr-only">(current)</span></a>
             </li>
-        </ul>
-    </div>
-    <div class="padding">
+        </ul> -->
             <div class="center-height">
                 <div>
-                    <button mat-raised-button (click)="navigateTo('home')" type="button" class="btn btn-success">
-                        Login</button>
+                    <button mat-raised-button (click)="navigateTo('home')" type="button" class="btn btn-info">
+                        Home</button>
                 </div>
                 <div class="space"></div>
                 <div>
-                    <button mat-raised-button (click)="navigateTo('')" type="button" class="btn btn-danger">
-                        Logout</button>
+                    <button mat-raised-button (click)="navigateTo('about')" type="button" class="btn btn-info">
+                        About</button>
                 </div>
             </div>
+    </div>
+    <div class="padding">
+        <div class="center-height">
+            <div>
+                <!-- BUTTON DISABLE/ENABLE CONFIGURATION STILL IN PROGRESS -->
+                <button mat-raised-button (click)="navigateTo('home')" (click)="disabled = !disabled" type="button" class="btn btn-success" [disabled]="disabled">
+                    Login</button>
+            </div>
+            <div class="space"></div>
+            <div>
+                <button mat-raised-button (click)="navigateTo('login')" (click)="disabled = !disabled" type="button" class="btn btn-danger">
+                    Logout</button>
+            </div>
         </div>
+    </div>
 </div>

@@ -6,6 +6,9 @@ import { Routes, RouterModule, Router } from '@angular/router';
   templateUrl: './main-header.component.html',
   styleUrls: ['./main-header.component.css']
 })
+// export class DemoButtonsDisabledComponent {
+//   disabled: false;
+// }
 export class MainHeaderComponent implements OnInit {
 
   constructor(

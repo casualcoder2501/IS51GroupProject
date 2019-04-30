@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Routes, RouterModule, Router } from '@angular/router';
+import { MainframeService } from '../mainframe.service';
+import { ApiService } from '../api.service';
+import { Currency } from '../currency.model';
 
 @Component({
   selector: 'app-login',
@@ -10,6 +13,7 @@ import { Routes, RouterModule, Router } from '@angular/router';
 // STILL NEED TO ADD LOGIC/FUNCTION TO TAKE IN INPUTED NAME FROM LOGIN TO CREATE PERSONALIZED GREETING ON HOME PAGE
 
 export class LoginComponent implements OnInit {
+  username: '';
 
   constructor(
     private router: Router
@@ -21,7 +25,9 @@ export class LoginComponent implements OnInit {
   navigateTo(path: string) {
     this.router.navigate([path]);
   }
-
+  test() {
+    console.log('test for username', this.username);
+  }
 }
 
 

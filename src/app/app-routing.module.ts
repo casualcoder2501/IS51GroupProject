@@ -9,7 +9,7 @@ import { HomeComponent } from './home/home.component';
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent
+    component: HomeComponent
   }, {
       path: 'home',
       component: HomeComponent
@@ -21,6 +21,10 @@ const routes: Routes = [
   {
     path: 'history',
     component: HistoryComponent
+  },
+  {
+    path: 'login',
+    component: LoginComponent
   },
   {
     path: '**',
