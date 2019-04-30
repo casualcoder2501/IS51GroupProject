@@ -50,4 +50,8 @@
     <input class="input-decimal" [(ngModel)]="decimalPlaces">
     <button (click)="increase(resultLeft.value)" type="button" class="btn btn-success">+</button>
   </div>
+  <div style="text-align:center">
+      <button mat-raised-button (click)=clear(resultLeft.name) type="button" class="btn-sm btn-grey">Reset
+      </button>
+  </div>
 </div>
