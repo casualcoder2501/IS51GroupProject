@@ -21,36 +21,44 @@ body {
     display: grid;
     grid-template-columns: 4fr 10fr 4fr;
     width: 100vw;
-    border: black 1px solid;
     height: 100%;
+    /* border: black 2px solid; */
 }
+
 .row-two {
     display: grid;
-    border: black 1px solid;
+    border: black 2px solid;
     height: 100%;
     width: 100vw;
     align-items: center;
     justify-content: center;
     padding: 50px;
-    background-color: aqua;
+    background-color:#56cded;
 }
 
 .row-three {
     grid-template-columns: 2fr 4fr 4fr 4fr 2fr;
     justify-content: center;
     display: grid;
-    border: black 1px none;
     height:100%;
-    width: 100vw;
+    width: 100%;
     padding: .5px;
-    margin: 5px;
+    margin: 1px;
     max-height: 2cm;
 }
 .padding{
     padding: 12px;
     margin:5px;
     border: black 1px solid;
-    height: 90%;
+    height: 100%;
+    width: 100%;
+}
+
+.image_div{
+    background-image:url("./assets/images/converter.png");
+    width:100%;
+    background-repeat:no-repeat;
+    background-size:cover;
 }
 
 .conversion-box {
@@ -82,8 +90,9 @@ body {
 .input-style {
     box-shadow: 1px 1px 1px .1px black;
     margin: 15px;
-    border: none;
+    border: black 1px solid;
     border-radius: 2px;
+    text-align:center;
 }
 .input-style:hover {
     box-shadow: 1px 1px 1px .1px black;
@@ -94,8 +103,9 @@ body {
 }
 .input-decimal {
     margin: 7px;
-    border: none;
-    width: 12px
+    border: black 1px solid;
+    width: 20px;
+    text-align:center;
 }
 .decimal-box {
     display: flex;
