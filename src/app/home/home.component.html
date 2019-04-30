@@ -1,0 +1,53 @@
+<div *ngIf="dataReady" class="row-two">
+
+  <!-- STILL NEED TO MODIFY GREETING TO TAKE USER NAME FROM LOGIN PAGE-->
+  <p style="text-align:center">
+    Hello (username). Have fun Converting!
+  </p>
+
+  <div class="conversion-box">
+
+
+
+    <!-- DROP DOWN BUTTON -->
+    <div class="btn-group" dropdown>
+      <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+        aria-controls="dropdown-basic">
+        {{this.mainframe.currentCountry.base}}<span class="caret"></span>
+      </button>
+      <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+        <li (click)="setCountry(currency, resultLeft.value)" *ngFor="let currency of currencies; let i = index"
+          role="menuitem"><a [ngStyle]="fontFamily" class="dropdown-item" href="#">{{currency.base}}</a></li>
+      </ul>
+    </div>
+    <!-- INPUT FIELD FOR CONVERSION -->
+    <input class="input-style" [disabled]="this.mainframe.conversionCountry === 'Pick a Currency'" [(ngModel)]="resultL"
+      name="inputLeft" (click)="clear(resultLeft.name)" (keyup)="this.mainframe.convert(resultLeft.value)" type="number"
+      placeholder="Type Amount Here" #resultLeft>
+  </div>
+  <div class="conversion-box">
+
+    <!-- DROP DOWN BUTTON -->
+    <div class="btn-group" dropdown>
+      <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+        aria-controls="dropdown-basic">
+        {{this.mainframe.conversionCountry}} <span class="caret"></span>
+      </button>
+      <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu scroll" role="menu" aria-labelledby="button-basic">
+        <li (click)="setRate(key, resultLeft.value)" *ngFor="let key of conversionLabels; let i = index"
+          role="menuitem"><a [ngStyle]="fontFamily" class="dropdown-item" href="#">{{key}}</a></li>
+      </ul>
+    </div>
+    <!-- INPUT FIELD FOR CONVERSION -->
+    <input [(ngModel)]="this.mainframe.resultRightHandSide" disabled="true" class="input-style" type="number"
+      placeholder="Output">
+  </div>
+  <div class="line-break"></div>
+  <div class="decimal-box">
+    <p style="font-family:Arial;font-weight: bold">Decimal Places</p>
+    <div class="line-break"></div>
+    <button (click)="decrease(resultLeft.value)" type="button" class="btn btn-danger">-</button>
+    <input class="input-decimal" [(ngModel)]="decimalPlaces">
+    <button (click)="increase(resultLeft.value)" type="button" class="btn btn-success">+</button>
+  </div>
+</div>

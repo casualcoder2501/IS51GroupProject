@@ -1,0 +1,13 @@
+.login-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 5%;
+    /* height: 100vh; */
+    align-items: center;
+  }
+  
+  .login-form {
+    padding: 25px;
+    background-color: rgb(53, 191, 213);
+    
+  }

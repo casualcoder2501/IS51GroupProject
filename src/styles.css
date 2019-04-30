@@ -12,11 +12,11 @@ body {
     overflow: hidden;
 }
 
-.main-page {
+/* .main-page {
     display: grid;
     grid-template-rows: 3fr 10fr 8fr;
     height: 100%;
-}
+} */
 .row-one {
     display: grid;
     grid-template-columns: 4fr 10fr 4fr;
