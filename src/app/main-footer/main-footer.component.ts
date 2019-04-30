@@ -143,6 +143,7 @@ export class MainFooterComponent implements OnInit {
     this.mainframe.convert(this.mainframe.leftHandSide);
   }
 
+
   edit(index: number, arrays: string) {
     console.log('edit');
     if (arrays === 'base') {
