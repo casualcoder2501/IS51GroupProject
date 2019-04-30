@@ -10,13 +10,21 @@ import { MainFooterComponent } from './main-footer/main-footer.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
+import { AboutComponent } from './about/about.component';
+import { LoginComponent } from './login/login.component';
+import { HistoryComponent } from './history/history.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainContentComponent,
     MainHeaderComponent,
-    MainFooterComponent
+    MainFooterComponent,
+    HomeComponent,
+    AboutComponent,
+    LoginComponent,
+    HistoryComponent
   ],
   imports: [
     BrowserModule,

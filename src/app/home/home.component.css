@@ -1,4 +1,4 @@
-/* .scroll {
+.scroll {
     max-height: 150px;
     overflow: auto;
 }
@@ -6,11 +6,4 @@
     .scroll {
         max-height: 230px;
     }
-} */
-
-.pull-right {
-    float:right;
-}
-.main-outlet {
-    display: none;
 }
