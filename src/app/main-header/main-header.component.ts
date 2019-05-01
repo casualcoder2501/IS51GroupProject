@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Routes, RouterModule, Router } from '@angular/router';
 import { LoginService } from '../login.service';
+import { MainframeService } from '../mainframe.service';
+
 @Component({
   selector: 'app-main-header',
   templateUrl: './main-header.component.html',
@@ -13,7 +15,8 @@ export class MainHeaderComponent implements OnInit {
 
   constructor(
     private login: LoginService,
-    private router: Router
+    private router: Router,
+    public mainframe: MainframeService
   ) { }
 
   ngOnInit() {

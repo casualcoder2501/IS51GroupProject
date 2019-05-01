@@ -115,4 +115,23 @@ export class MainframeService {
     console.log(this.api.currencyList);
 
   }
+
+  restoreHistory() {
+    if (this.storedHistory.length === 0) {
+      alert('No history to restore!');
+  } else {
+    this.history = this.storedHistory;
+    this.historyOverflow = this.storedHistoryOverflow;
+    this.historyOverflowTwo = this.storedHistoryOverflowTwo;
+  }
+}
+
+logoutHistory() {
+  this.storedHistory = this.history;
+  this.storedHistoryOverflow = this.historyOverflow;
+  this.storedHistoryOverflowTwo = this.historyOverflowTwo;
+  this.history = [];
+  this.historyOverflow = [];
+  this.historyOverflowTwo = [];
+}
 }

@@ -22,7 +22,7 @@
                     Login</button>
                 </div>
                 <div>
-                <button *ngIf="this.login.loggedIn"mat-raised-button (click)="navigateTo('login', 'logOut')" (click)="disabled = !disabled" type="button" class="btn-sm btn-danger">
+                <button *ngIf="this.login.loggedIn"mat-raised-button (click)="navigateTo('login', 'logOut')" (click)=mainframe.logoutHistory() (click)="disabled = !disabled" type="button" class="btn-sm btn-danger">
                     Logout</button>
                 </div>
         </div>
