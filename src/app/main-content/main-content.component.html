@@ -3,36 +3,33 @@
 
     <!-- DROP DOWN BUTTON -->
     <div class="btn-group" dropdown>
-      <button id="button-basic" dropdownToggle type="button" class="btn-sm btn-primary dropdown-toggle"
-        aria-controls="dropdown-basic">
+      <button id="button-basic" dropdownToggle type="button" class="btn-sm btn-primary dropdown-toggle" aria-controls="dropdown-basic">
         {{this.mainframe.currentCountry.base}}<span class="caret"></span>
       </button>
       <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-        <li (click)="setCountry(currency, resultLeft.value)" *ngFor="let currency of currencies; let i = index"
-          role="menuitem"><a [ngStyle]="fontFamily" class="dropdown-item" href="#">{{currency.base}}</a></li>
+        <li (click)="setCountry(currency, resultLeft.value)" *ngFor="let currency of currencies; let i = index" role="menuitem"><a
+            [ngStyle]="fontFamily" class="dropdown-item" href="#">{{currency.base}}</a></li>
       </ul>
     </div>
     <!-- INPUT FIELD FOR CONVERSION -->
-    <input class="input-style" id="reset" [disabled]="this.mainframe.conversionCountry === 'Pick a Currency'"
-      [(ngModel)]="resultL" name="inputLeft" (click)="clear(resultLeft.name)"
-      (keyup)="this.mainframe.convert(resultLeft.value)" type="number" placeholder="Type Amount Here" #resultLeft>
+    <input class="input-style" id="reset" [disabled]="this.mainframe.conversionCountry === 'Pick a Currency'" [(ngModel)]="resultL"
+      name="inputLeft" (click)="clear(resultLeft.name)" (keyup)="this.mainframe.convert(resultLeft.value)" type="number" placeholder="Type Amount Here"
+      #resultLeft>
   </div>
   <div class="conversion-box">
 
     <!-- DROP DOWN BUTTON -->
     <div class="btn-group" dropdown>
-      <button id="button-basic" dropdownToggle type="button" class="btn-sm btn-primary dropdown-toggle"
-        aria-controls="dropdown-basic">
+      <button id="button-basic" dropdownToggle type="button" class="btn-sm btn-primary dropdown-toggle" aria-controls="dropdown-basic">
         {{this.mainframe.conversionCountry}} <span class="caret"></span>
       </button>
       <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu scroll" role="menu" aria-labelledby="button-basic">
-        <li (click)="setRate(key, resultLeft.value)" *ngFor="let key of conversionLabels; let i = index"
-          role="menuitem"><a [ngStyle]="fontFamily" class="dropdown-item" href="#">{{key}}</a></li>
+        <li (click)="setRate(key, resultLeft.value)" *ngFor="let key of conversionLabels; let i = index" role="menuitem"><a
+            [ngStyle]="fontFamily" class="dropdown-item" href="#">{{key}}</a></li>
       </ul>
     </div>
     <!-- INPUT FIELD FOR CONVERSION -->
-    <input [(ngModel)]="this.mainframe.resultRightHandSide" disabled="true" class="input-style" type="number"
-      placeholder="Output">
+    <input [(ngModel)]="this.mainframe.resultRightHandSide" disabled="true" class="input-style" type="number" placeholder="Output">
   </div>
   <div class="line-break"></div>
   <div class="decimal-box">
@@ -42,3 +39,8 @@
     <input class="input-decimal" style="align-content: center" [(ngModel)]="decimalPlaces">
     <button (click)="increase(resultLeft.value)" type="button" class="btn-sm btn-success">+</button>
   </div>
+  <div style="text-align:center">
+    <button mat-raised-button (click)=clear(resultLeft.name) type="button" class="btn-sm btn-grey">Reset
+    </button>
+  </div>
+</div>
