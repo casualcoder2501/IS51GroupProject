@@ -16,6 +16,8 @@ export class HomeComponent implements OnInit {
     'font-weight': 'bold'
   };
 
+  username = 'User';
+
   // array that contains currency objects
   currencies: Array<Currency>; // gets set during loadUp function
   d = new Date();
@@ -31,7 +33,7 @@ export class HomeComponent implements OnInit {
 
   async ngOnInit() {
     await this.loadUp();
-
+    this.username = JSON.parse(localStorage.getItem('username'));
 
 
 

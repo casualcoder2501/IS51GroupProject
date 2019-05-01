@@ -18,6 +18,7 @@ export class MainHeaderComponent implements OnInit {
   ngOnInit() {
   }
 
+  // FUNCTION USED FOR NAVIGATING PAGES W/OUT USING HREF
   navigateTo(path: string) {
     this.router.navigate([path]);
   }
