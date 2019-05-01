@@ -75,18 +75,6 @@ export class LoginComponent implements OnInit {
       console.log('too amny')
       this.login.loggedIn = true;
     }
-    for (let i = 0; i > this.currencies.length; i++) {
-      if (name === this.currencies[i].base) {
-        this.login.indexOfCountry = i;
-        console.log(i)
-
-      } else {
-        this.login.indexOfCountry = 0;
-      }
-    }
-  }
-  setDefault(name) {
-    this.login.defCurrency = name;
 
   }
 

@@ -35,15 +35,14 @@ export class MainframeService {
   conversionCountryEdit: string;
   d = new Date();
   decimalPlace = 2;
-
+  conversionSymbol = '';
+  conversionBaseCountry = '$';
   history: Array<IHistory> = [];
   historyOverflow: Array<IHistory> = [];
   historyOverflowTwo: Array<IHistory> = [];
   randomNumber: number;
   newArray: Array<IHistory> = [];
-  resultSymbolsArray: ['A$', 'Лв.', 'R$', 'Can$', 'Fr.', '¥', 'Kč', 'Kr.', '€', '£', 'HK$', 'kn', 'Ft',
-    'Rp', '₪', '₹', 'Íkr', '¥', '₩', 'Mex$', 'RM', 'kr', '$', '₱', 'zł', 'lei', '₽', 'kr', 'S$', '฿', '₺',
-    '$', 'R'];
+
 
   constructor(private api: ApiService) { }
 
@@ -106,7 +105,7 @@ export class MainframeService {
     this.conversionLabels = await Object.keys(this.api.localList[0].rates);
     this.currentCountry = await this.api.localList[0];
     this.rates = await this.api.localList[0].rates;
-    console.log(this.api.localList)
+    console.log(this.api.currencyList)
 
   }
 }
