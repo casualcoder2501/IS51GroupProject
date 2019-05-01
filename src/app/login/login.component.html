@@ -2,7 +2,7 @@
 <!-- <div class="space"></div> -->
 
 <p style="text-align:center">
-  Welcome to Team Converter's Conversion Calculator! Please fill in your info below:
+  Welcome to Team Converter's Conversion Calculator! <br>Please fill in your info below:
 </p>
 <div>
 </div>
@@ -11,31 +11,14 @@
 
   <!-- STILL NEED TO TAKE INPUTED USER NAME AND CREATE A CUSTIMIZED GREETING IN THE NAVIGATION MENU/HEADER COMPONENT -->
 
-    <label for="exampleInputEmail1">User Name</label>
+    <label for="exampleInputEmail1"><p>User Name:</p></label>
     <input [(ngModel)]="username" name="username" type="text" class="form-control" id="inputName" #inputName
       aria-describedby="emailHelp" placeholder="Input Name">
   </div>
 
   <!-- STILL NEED TO WIRE UP DEFAULT COUNTRY CHOICE TO MATCH DROP-DOWN MENU OF BASE CURRENCIES -->
 
-  <div class="form-group">
-    <label for="exampleInputPassword1">Default Country</label>
-   
-  
-  
-    </div>
-  <div class="btn-group" dropdown>
-      <button id="button-basic"  dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
-        aria-controls="dropdown-basic">
-       {{this.login.defCurrency}} <span class="caret"></span>
-      </button>
-      <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-        <li (click)="setDefault(currency.base)" *ngFor="let currency of currencies; let i = index" role="menuitem"><a [ngStyle]="fontFamily" class="dropdown-item" href="#">{{currency.base}}</a></li>
-      </ul>
-    </div>
 
-  <!-- <button mat-raised-button (click)="navigateTo('home')" type="button" class="btn btn-success">
-      Login</button> -->
       <button mat-raised-button (click)="navigateTo('home', inputName.value, this.login.defCurrency)" type="button" class="btn pull-right btn-primary">
         Submit</button>
 </form>

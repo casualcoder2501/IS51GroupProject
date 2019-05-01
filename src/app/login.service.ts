@@ -13,9 +13,7 @@ export class LoginService {
 
   userArray: Array<IUser> = [];
   currentUser: IUser = {};
-  indexOfCountry: number;
   loggedIn = false;
-  defCurrency = 'USD';
   constructor(private toast: ToastService) { }
 
 

@@ -1,6 +1,7 @@
 interface ICurrency {
     base?: string;
     date?: string;
+    symbol?: string;
     rates?:
     {
         AUD: string,
@@ -42,6 +43,7 @@ interface ICurrency {
 export class Currency implements ICurrency {
     base?: string;
     date?: string;
+    symbol?: string;
     rates?:
         {
             AUD: string,

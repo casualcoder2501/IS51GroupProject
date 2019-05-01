@@ -5,10 +5,10 @@
     <!-- DROP DOWN BUTTON -->
     <div class="btn-group" dropdown>
       <button id="button-basic" dropdownToggle type="button" class="btn-sm btn-primary dropdown-toggle" aria-controls="dropdown-basic">
-        {{this.mainframe.currentCountry.base}}<span class="caret"></span>
+        {{this.mainframe.currentCountry.base}}-{{this.mainframe.conversionBaseCountry}}<span class="caret"></span>
       </button>
       <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-        <li (click)="setCountry(currency, resultLeft.value)" *ngFor="let currency of currencies; let i = index" [ngStyle]="fontFamily" role="menuitem"><a class="dropdown-item">{{currency.base}}</a></li>
+        <li (click)="setCountry(currency, resultLeft.value, fromSymbolsArray[i])" *ngFor="let currency of currencies; let i = index" [ngStyle]="fontFamily" role="menuitem"><a class="dropdown-item">{{currency.base}}-{{fromSymbolsArray[i]}}</a></li>
       </ul>
     </div>
     <!-- INPUT FIELD FOR CONVERSION -->
@@ -21,10 +21,10 @@
     <!-- DROP DOWN BUTTON -->
     <div class="btn-group" dropdown>
       <button id="button-basic" dropdownToggle type="button" class="btn-sm btn-primary dropdown-toggle" aria-controls="dropdown-basic">
-        {{this.mainframe.conversionCountry}} <span class="caret"></span>
+        {{this.mainframe.conversionCountry}} - {{this.mainframe.conversionSymbol}} <span class="caret"></span>
       </button>
       <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu scroll" role="menu" aria-labelledby="button-basic">
-        <li (click)="setRate(key, resultLeft.value)" *ngFor="let key of conversionLabels; let i = index" role="menuitem" [ngStyle]="fontFamily"> <a class="dropdown-item">{{key}}</a></li>
+        <li (click)="setRate(key, resultLeft.value,resultSymbolsArray[i])" *ngFor="let key of conversionLabels; let i = index" role="menuitem" [ngStyle]="fontFamily"> <a class="dropdown-item">{{key}}-{{resultSymbolsArray[i]}}</a></li>
       </ul>
     </div>
     <!-- INPUT FIELD FOR CONVERSION -->

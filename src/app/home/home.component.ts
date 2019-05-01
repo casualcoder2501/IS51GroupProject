@@ -24,8 +24,12 @@ export class HomeComponent implements OnInit {
   resultL: string;
   decimalPlaces = 2;
   currentUse;
-
-  conversionLabels = []
+  // tslint:disable-next-line: max-line-length
+  fromSymbolsArray = ['$', '£', '€', 'Can$', 'A$', 'HK$', '¥', 'Fr.', 'R$', 'Лв.'];
+  // tslint:disable-next-line: max-line-length
+  resultSymbolsArray = ['Лв.', '$', '₪', '₽', 'Can$', '$', '₱', 'Fr.', 'A$', '¥', '₺', 'HK$', 'RM', 'kn', 'Kč', 'Rp', 'Kr.', 'kr', 'Ft', '£',
+    'Mex$', '฿', 'Íkr', 'R', 'R$', 'S$', 'zł', '₹', '₩', 'lei', '¥', 'kr', '€'];
+  conversionLabels = [];
 
   // variable that tells the app all our data is loaded
   dataReady = false;
@@ -50,14 +54,16 @@ export class HomeComponent implements OnInit {
   }
 
   // function sets the current conversion country according to user input and converts
-  setCountry(country: Currency, value) {
+  setCountry(country: Currency, value, base) {
     this.mainframe.currentCountry = country;
     this.mainframe.rates = country.rates;
+    this.mainframe.conversionBaseCountry = base;
     this.mainframe.convert(value);
   }
   //  function sets country converting to according to user input and converts
-  setRate(convertCountry?: string, rate?: number) {
+  setRate(convertCountry?: string, rate?: number, symbol?: string) {
     this.mainframe.conversionCountry = convertCountry;
+    this.mainframe.conversionSymbol = symbol;
     this.mainframe.convert(rate);
   }
 
