@@ -1,35 +1,30 @@
-
 <div class="row-one">
-    <div class="back-img">
-        <img src="./assets/images/converter.png"  height=250px; width=450px;>
-    </div>
     <div class="padding">
-        <a class="navbar-brand">Navigation</a>
-       
-            <div class="center-height">
+        <a class="navbar-brand"></a>
+            <div class="vertical-center-r1c1">
                 <div>
-                    <button mat-raised-button (click)="navigateTo('home')" type="button" class="btn btn-info">
+                    <button mat-raised-button (click)="navigateTo('home')" type="button" class="btn-sm btn-info">
                         Home</button>
                 </div>
                 <div class="space"></div>
                 <div>
-                    <button mat-raised-button (click)="navigateTo('about')" type="button" class="btn btn-info">
+                    <button mat-raised-button (click)="navigateTo('about')" type="button" class="btn-sm btn-info">
                         About</button>
                 </div>
             </div>
     </div>
+    <div></div>
     <div class="padding">
-        <div class="center-height">
-            <div>
+        <div class="pull-right vertical-center-header">
                 <!-- BUTTON DISABLE/ENABLE CONFIGURATION STILL IN PROGRESS -->
-                <button *ngIf="!this.login.loggedIn" mat-raised-button (click)="navigateTo('login')" (click)="disabled = !disabled" type="button" class="btn btn-success" [disabled]="disabled">
+                <div>
+                <button *ngIf="!this.login.loggedIn" mat-raised-button (click)="navigateTo('login')" (click)="disabled = !disabled" type="button" class="btn-sm btn-success" [disabled]="disabled">
                     Login</button>
-            </div>
-            <div class="space"></div>
-            <div>
-                <button *ngIf="this.login.loggedIn"mat-raised-button (click)="navigateTo('login', 'logOut')" (click)="disabled = !disabled" type="button" class="btn btn-danger">
+                </div>
+                <div>
+                <button *ngIf="this.login.loggedIn"mat-raised-button (click)="navigateTo('login', 'logOut')" (click)="disabled = !disabled" type="button" class="btn-sm btn-danger">
                     Logout</button>
-            </div>
+                </div>
         </div>
     </div>
 </div>

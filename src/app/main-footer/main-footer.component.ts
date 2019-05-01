@@ -17,11 +17,11 @@ export class MainFooterComponent implements OnInit {
   currencyIndex: number;
   editConversion: boolean;
 
+
   constructor(
     public mainframe: MainframeService,
     public api: ApiService,
-    public toast: ToastService
-  
+    public toast: ToastService,
   ) { }
 
   ngOnInit() {
@@ -29,7 +29,6 @@ export class MainFooterComponent implements OnInit {
 
   saveConversion() {
     this.toast.showToast('warning', 5000, 'Please select a currency!');
-   
     if (this.mainframe.conversionCountry === 'Pick a Currency') {
       this.toast.showToast('warning', 5000, 'Please select a currency!');
       this.errorMessage = 'Please select a currency!';
@@ -48,33 +47,32 @@ export class MainFooterComponent implements OnInit {
         this.mainframe.history.unshift({
           countryLeft: this.mainframe.currentCountry.base,
           countryRight: this.mainframe.conversionCountry,
-          
           conversionLeft: this.mainframe.leftHandSide,
           conversionRight: this.mainframe.resultRightHandSide,
+          symbolLeft: this.mainframe.conversionBaseCountry,
+          symbolRight: this.mainframe.conversionSymbol,
           editMode: false
         });
-
-      
-
       } else if (this.mainframe.history.length > 2) {
         this.mainframe.historyOverflow.unshift(this.mainframe.history[2]);
         this.mainframe.history.splice(2, 1);
         this.mainframe.history.unshift({
           countryLeft: this.mainframe.currentCountry.base,
           countryRight: this.mainframe.conversionCountry,
-         
           conversionLeft: this.mainframe.leftHandSide,
           conversionRight: this.mainframe.resultRightHandSide,
+          symbolLeft: this.mainframe.conversionBaseCountry,
+          symbolRight: this.mainframe.conversionSymbol,
           editMode: false
         });
-        
       } else {
         this.mainframe.history.unshift({
           countryLeft: this.mainframe.currentCountry.base,
           countryRight: this.mainframe.conversionCountry,
-         
           conversionLeft: this.mainframe.leftHandSide,
           conversionRight: this.mainframe.resultRightHandSide,
+          symbolLeft: this.mainframe.conversionBaseCountry,
+          symbolRight: this.mainframe.conversionSymbol,
           editMode: false
         });
       }
@@ -110,6 +108,9 @@ export class MainFooterComponent implements OnInit {
   }
 
   clearHistory() {
+    this.mainframe.storedHistory = this.mainframe.history;
+    this.mainframe.storedHistoryOverflow = this.mainframe.historyOverflow;
+    this.mainframe.storedHistoryOverflowTwo = this.mainframe.historyOverflowTwo;
     this.mainframe.history = [];
     this.mainframe.historyOverflow = [];
     this.mainframe.historyOverflowTwo = [];
@@ -123,6 +124,7 @@ export class MainFooterComponent implements OnInit {
     const rateHolder = rate[this.mainframe.randomNumber];
     this.mainframe.conversionCountry = rateHolder[0];
     this.mainframe.convert(this.mainframe.leftHandSide);
+    this.mainframe.conversionSymbol = this.mainframe.resultSymbolsArray[this.mainframe.randomNumber];
   }
 
 
@@ -152,6 +154,8 @@ export class MainFooterComponent implements OnInit {
           countryRight: this.mainframe.history[index].countryRight,
           conversionLeft: this.mainframe.history[index].conversionLeft,
           conversionRight: this.mainframe.rightHandSide,
+          symbolLeft: this.mainframe.history[index].symbolLeft,
+          symbolRight: this.mainframe.history[index].symbolRight,
           editMode: false}
         );
       } else if (arrays === 'overflow') {
@@ -165,6 +169,8 @@ export class MainFooterComponent implements OnInit {
             countryRight: this.mainframe.historyOverflow[index].countryRight,
             conversionLeft: this.mainframe.historyOverflow[index].conversionLeft,
             conversionRight: this.mainframe.rightHandSide,
+            symbolLeft: this.mainframe.historyOverflow[index].symbolLeft,
+            symbolRight: this.mainframe.historyOverflow[index].symbolRight,
             editMode: false}
           );
       } else {
@@ -179,6 +185,8 @@ export class MainFooterComponent implements OnInit {
             countryRight: this.mainframe.historyOverflowTwo[index].countryRight,
             conversionLeft: this.mainframe.historyOverflowTwo[index].conversionLeft,
             conversionRight: this.mainframe.rightHandSide,
+            symbolLeft: this.mainframe.historyOverflowTwo[index].symbolLeft,
+            symbolRight: this.mainframe.historyOverflowTwo[index].symbolRight,
             editMode: false}
           );
       }
