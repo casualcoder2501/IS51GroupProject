@@ -12,7 +12,7 @@
   <!-- STILL NEED TO TAKE INPUTED USER NAME AND CREATE A CUSTIMIZED GREETING IN THE NAVIGATION MENU/HEADER COMPONENT -->
 
     <label for="exampleInputEmail1">User Name</label>
-    <input [(ngModel)]="username" name="username" type="text" class="form-control" id="exampleInputEmail1"
+    <input [(ngModel)]="username" name="username" type="text" class="form-control" id="inputName" #inputName
       aria-describedby="emailHelp" placeholder="Input Name">
   </div>
 
@@ -25,19 +25,19 @@
   
     </div>
   <div class="btn-group" dropdown>
-      <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
+      <button id="button-basic"  dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
         aria-controls="dropdown-basic">
-        {{this.mainframe.currentCountry.base}}<span class="caret"></span>
+       {{this.login.defCurrency}} <span class="caret"></span>
       </button>
       <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-        <li (click)="setCountry(currency, resultLeft.value)" *ngFor="let currency of currencies; let i = index"
-          role="menuitem"><a [ngStyle]="fontFamily" class="dropdown-item" href="#">{{currency.base}}</a></li>
+        <li (click)="setDefault(currency.base)" *ngFor="let currency of currencies; let i = index" role="menuitem"><a [ngStyle]="fontFamily" class="dropdown-item" href="#">{{currency.base}}</a></li>
       </ul>
     </div>
 
   <!-- <button mat-raised-button (click)="navigateTo('home')" type="button" class="btn btn-success">
       Login</button> -->
-      
+      <button mat-raised-button (click)="navigateTo('home', inputName.value, this.login.defCurrency)" type="button" class="btn pull-right btn-primary">
+        Submit</button>
 </form>
 <div></div>
 </div>

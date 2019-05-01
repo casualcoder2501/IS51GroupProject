@@ -9,10 +9,12 @@ import { HomeComponent } from './home/home.component';
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: LoginComponent,
+    runGuardsAndResolvers: 'always'
   }, {
       path: 'home',
-      component: HomeComponent
+      component: HomeComponent,
+      runGuardsAndResolvers: 'always'
     },
   {
     path: 'about',
@@ -24,7 +26,8 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    runGuardsAndResolvers: 'always'
   },
   {
     path: '**',
@@ -33,7 +36,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

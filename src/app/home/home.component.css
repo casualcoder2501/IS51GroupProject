@@ -6,4 +6,10 @@
     .scroll {
         max-height: 230px;
     }
+
+}
+
+p {
+    margin: auto;
+    font-weight: bold;
 }

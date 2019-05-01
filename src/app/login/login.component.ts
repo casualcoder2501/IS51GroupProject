@@ -3,7 +3,9 @@ import { Routes, RouterModule, Router } from '@angular/router';
 import { MainframeService } from '../mainframe.service';
 import { ApiService } from '../api.service';
 import { Currency } from '../currency.model';
-
+import { LoginService } from '../login.service';
+import { ToastService } from '../toast/toast.service';
+import { IUser } from '../login.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,22 +15,99 @@ import { Currency } from '../currency.model';
 // STILL NEED TO ADD LOGIC/FUNCTION TO TAKE IN INPUTED NAME FROM LOGIN TO CREATE PERSONALIZED GREETING ON HOME PAGE
 
 export class LoginComponent implements OnInit {
+
   username: '';
+  currencies: Array<Currency>;
+
+
+  logArray = this.login.userArray;
 
   constructor(
-    private router: Router
+    private toast: ToastService,
+    private login: LoginService,
+    private api: ApiService,
+    private router: Router,
+    private mainframe: MainframeService
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    if (this.api.localList === null) {
+      await this.mainframe.loadData();
+      this.currencies = this.mainframe.currencies;
+    } else {
+      await this.mainframe.dataLoad();
+      this.currencies = this.mainframe.currencies;
+    }
   }
 
-  navigateTo(path: string) {
+  async navigateTo(path: string, username: string, defau: string) {
+    await this.createUser(username, defau);
     this.router.navigate([path]);
   }
-  test() {
-    console.log('test for username', this.username);
+
+  async createUser(user: string, def: string) {
+    const userData = this.isUserInData(user, def);
+    const newUser: IUser = {
+      username: user,
+      default: def
+    };
+
+
+    if (this.logArray === null || this.logArray.length <= 0) {
+      await this.login.userArray.push(newUser);
+      this.login.currentUser = await newUser;
+      this.login.loggedIn = true;
+      await localStorage.setItem('users', JSON.stringify(this.logArray
+      ));
+      await localStorage.setItem('currentUser', JSON.stringify(this.login.currentUser));
+      this.login.userArray = JSON.parse(localStorage.getItem('users'));
+      this.toast.showToast('succeed', 2000, `Welcome to The Converter ${newUser.username}`)
+      console.log('if');
+    } else if (userData) {
+      this.login.loggedIn = true;
+      alert('Welcome Back!')
+    } else {
+      this.login.currentUser = await newUser;
+      await this.login.userArray.push(newUser);
+      localStorage.setItem('currentUser', JSON.stringify(this.login.currentUser));
+      await localStorage.setItem('users', JSON.stringify(this.login.userArray));
+      this.login.userArray = JSON.parse(localStorage.getItem('users'))
+      console.log('too amny')
+      this.login.loggedIn = true;
+    }
+    for (let i = 0; i > this.currencies.length; i++) {
+      if (name === this.currencies[i].base) {
+        this.login.indexOfCountry = i;
+        console.log(i)
+
+      } else {
+        this.login.indexOfCountry = 0;
+      }
+    }
+  }
+  setDefault(name) {
+    this.login.defCurrency = name;
+
+  }
+
+  isUserInData(newUser, defa) {
+    for (let users of this.logArray) {
+      if (users.username === newUser && users.default === defa) {
+        return true;
+      } else {
+        return false;
+      }
+
+    }
   }
 }
+
+
+    // console.log('current User', this.login.currentUser);
+    // console.log( 'userArray', this.login.userArray);
+
+
+
 
 
 // MATERIAL REFERENCED FROM SAMPLE TEST 2

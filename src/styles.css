@@ -12,16 +12,21 @@ body {
     overflow: hidden;
 }
 
-/* .main-page {
+.pull-right {
+    float: right;
+}
+
+.main-page {
     display: grid;
     grid-template-rows: 3fr 10fr 8fr;
     height: 100%;
-} */
+}
 .row-one {
     display: grid;
     grid-template-columns: 4fr 10fr 4fr;
     width: 100vw;
     height: 100%;
+    
     /* border: black 2px solid; */
 }
 
