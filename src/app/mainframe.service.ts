@@ -31,6 +31,7 @@ export class MainframeService {
   editConversion = false;
   index: number;
   conversionCountryEdit: string;
+  currentCountryEdit: Currency;
 
   decimalPlace = 2;
 
