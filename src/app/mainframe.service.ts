@@ -20,6 +20,8 @@ interface IHistory {
 })
 
 export class MainframeService {
+  currencies: Array<Currency> = [];
+  conversionLabels = [];
   // store the current values for conversion
   currentCountry: Currency; // Country converting from
   conversionCountry = 'Pick a Currency'; // Country converting to. These are set to defaults
@@ -31,7 +33,7 @@ export class MainframeService {
   editConversion = false;
   index: number;
   conversionCountryEdit: string;
-
+  d = new Date();
   decimalPlace = 2;
 
   history: Array<IHistory> = [];
@@ -65,4 +67,46 @@ export class MainframeService {
     }
   }
 
+  // function that retrieves the stored date from local storage or returns as todays date
+  today() {
+    if (localStorage.getItem('date')) {
+      return JSON.parse(localStorage.getItem('date'));
+    } else {
+      return this.d.getDate();
+    }
+  }
+  // function makes http call if there is nothing in local storage or if todays date is not the same as
+  // the date stored in local storage. If it doesnt make the call it sets variables according to local storage
+  async loadUp() {
+    const d = new Date();
+    if (this.api.localList === null || this.today() !== d.getDate()) {
+      await this.loadData();
+
+
+    } else {
+      this.dataLoad()
+    }
+  }
+  // Initializes all the data we need. Only runs if conditions above are met.
+  async loadData() {
+
+    await this.api.httpCall();
+    this.api.localList = await JSON.parse(localStorage.getItem('currencies'));
+    this.currencies = await this.api.currencyList;
+    this.conversionLabels = await Object.keys(this.api.currencyList[0].rates);
+    this.currentCountry = await this.api.currencyList[0];
+    this.rates = await this.api.currencyList[0].rates;
+    console.log('loadData')
+  }
+
+
+  async dataLoad() {
+    this.api.localList = await JSON.parse(localStorage.getItem('currencies'));
+    this.currencies = await this.api.localList;
+    this.conversionLabels = await Object.keys(this.api.localList[0].rates);
+    this.currentCountry = await this.api.localList[0];
+    this.rates = await this.api.localList[0].rates;
+    console.log(this.api.localList)
+
+  }
 }

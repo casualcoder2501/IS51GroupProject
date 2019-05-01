@@ -15,6 +15,7 @@ import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 import { HistoryComponent } from './history/history.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

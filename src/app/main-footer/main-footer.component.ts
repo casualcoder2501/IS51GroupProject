@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MainframeService } from '../mainframe.service';
 import { ApiService } from '../api.service';
 import { ToastService } from '../toast/toast.service';
-// import { Currency } from '../currency.model';
+
 
 @Component({
   selector: 'app-main-footer',
@@ -21,8 +21,7 @@ export class MainFooterComponent implements OnInit {
     public mainframe: MainframeService,
     public api: ApiService,
     public toast: ToastService
-    // public currency: Currency
-    // public flexModal: FlexModalService
+  
   ) { }
 
   ngOnInit() {
@@ -30,15 +29,7 @@ export class MainFooterComponent implements OnInit {
 
   saveConversion() {
     this.toast.showToast('warning', 5000, 'Please select a currency!');
-    // const apiObject = this.api.localList[0];
-    // const rate = Object.entries(apiObject.rates);
-    // const rateHolder = rate[this.api.currencyList.indexOf(this.mainframe.conversionCountry)];
-    // this.symbol = rateHolder[0];
-    // console.log(this.symbol);
-    // console.log('this.resultRightHandSide', this.mainframe.resultRightHandSide,
-    //   'this.resultLeftHandSide', this.mainframe.resultLeftHandSide);
-    // console.log('nationleft', this.mainframe.conversionLHS.denomination,
-    //   'nationright', this.mainframe.conversionRHS.denomination);
+   
     if (this.mainframe.conversionCountry === 'Pick a Currency') {
       this.toast.showToast('warning', 5000, 'Please select a currency!');
       this.errorMessage = 'Please select a currency!';
@@ -57,16 +48,13 @@ export class MainFooterComponent implements OnInit {
         this.mainframe.history.unshift({
           countryLeft: this.mainframe.currentCountry.base,
           countryRight: this.mainframe.conversionCountry,
-          // denominationLeft: this.mainframe.conversionLHS.denomination,
-          // denominationRight: this.mainframe.conversionRHS.denomination,
-          // symbolLeft: this.mainframe.conversionLHS.symbol,
-          // symbolRight: this.mainframe.conversionRHS.symbol,
+          
           conversionLeft: this.mainframe.leftHandSide,
           conversionRight: this.mainframe.resultRightHandSide,
           editMode: false
         });
 
-        // console.log(this.mainframe.historyOverflow);
+      
 
       } else if (this.mainframe.history.length > 2) {
         this.mainframe.historyOverflow.unshift(this.mainframe.history[2]);
@@ -74,23 +62,17 @@ export class MainFooterComponent implements OnInit {
         this.mainframe.history.unshift({
           countryLeft: this.mainframe.currentCountry.base,
           countryRight: this.mainframe.conversionCountry,
-          // denominationLeft: this.mainframe.conversionLHS.denomination,
-          // denominationRight: this.mainframe.conversionRHS.denomination,
-          // symbolLeft: this.mainframe.conversionLHS.symbol,
-          // symbolRight: this.mainframe.conversionRHS.symbol,
+         
           conversionLeft: this.mainframe.leftHandSide,
           conversionRight: this.mainframe.resultRightHandSide,
           editMode: false
         });
-        // console.log(this.mainframe.history);
+        
       } else {
         this.mainframe.history.unshift({
           countryLeft: this.mainframe.currentCountry.base,
           countryRight: this.mainframe.conversionCountry,
-          // denominationLeft: this.mainframe.conversionLHS.denomination,
-          // denominationRight: this.mainframe.conversionRHS.denomination,
-          // symbolLeft: this.mainframe.conversionLHS.symbol,
-          // symbolRight: this.mainframe.conversionRHS.symbol,
+         
           conversionLeft: this.mainframe.leftHandSide,
           conversionRight: this.mainframe.resultRightHandSide,
           editMode: false
