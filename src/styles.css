@@ -12,10 +12,6 @@ body {
     overflow: hidden;
 }
 
-.pull-right {
-    float: center;
-}
-
 .main-page {
     display: grid;
     grid-template-rows: 3fr 10fr 8fr;
@@ -30,8 +26,6 @@ body {
     background-repeat:no-repeat;
     background-size: contain;
     max-height: 100%;
-    
-    /* border: black 2px solid; */
 }
 
 .row-two {
@@ -58,7 +52,6 @@ body {
 .padding{
     padding: 12px;
     margin:5px;
-    /* border: black 1px solid; */
     height: 100%;
     width: 100%;
 }

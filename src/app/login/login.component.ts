@@ -80,7 +80,7 @@ export class LoginComponent implements OnInit {
   }
 
   isUserInData(newUser, defa) {
-    for (let users of this.logArray) {
+    for (const users of this.logArray) {
       if (users.username === newUser && users.default === defa) {
         return true;
       } else {

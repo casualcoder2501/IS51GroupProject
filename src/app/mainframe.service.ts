@@ -6,8 +6,6 @@ import { ApiService } from './api.service';
 interface IHistory {
   countryLeft: any;
   countryRight: string;
-  // denominationLeft: string;
-  // denominationRight: string;
   symbolLeft: string;
   symbolRight: string;
   conversionLeft: number;
