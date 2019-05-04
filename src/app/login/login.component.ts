@@ -61,25 +61,26 @@ export class LoginComponent implements OnInit {
       ));
       await localStorage.setItem('currentUser', JSON.stringify(this.login.currentUser));
       this.login.userArray = JSON.parse(localStorage.getItem('users'));
-      this.toast.showToast('succeed', 2000, `Welcome to The Converter ${newUser.username}`)
+      this.toast.showToast('succeed', 2000, `Welcome to The Converter ${newUser.username}`);
       console.log('if');
     } else if (userData) {
       this.login.loggedIn = true;
-      alert('Welcome Back!')
+      alert('Welcome Back!');
+      this.mainframe.restoreHistory();
     } else {
       this.login.currentUser = await newUser;
       await this.login.userArray.push(newUser);
       localStorage.setItem('currentUser', JSON.stringify(this.login.currentUser));
       await localStorage.setItem('users', JSON.stringify(this.login.userArray));
-      this.login.userArray = JSON.parse(localStorage.getItem('users'))
-      console.log('too amny')
+      this.login.userArray = JSON.parse(localStorage.getItem('users'));
+      console.log('too amny');
       this.login.loggedIn = true;
     }
 
   }
 
   isUserInData(newUser, defa) {
-    for (let users of this.logArray) {
+    for (const users of this.logArray) {
       if (users.username === newUser && users.default === defa) {
         return true;
       } else {

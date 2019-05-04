@@ -6,10 +6,8 @@ import { ApiService } from './api.service';
 interface IHistory {
   countryLeft: any;
   countryRight: string;
-  // denominationLeft: string;
-  // denominationRight: string;
-  // symbolLeft: string;
-  // symbolRight: string;
+  symbolLeft: string;
+  symbolRight: string;
   conversionLeft: number;
   conversionRight: any;
   editMode: boolean;
@@ -42,6 +40,13 @@ export class MainframeService {
   historyOverflowTwo: Array<IHistory> = [];
   randomNumber: number;
   newArray: Array<IHistory> = [];
+  storedHistory: Array<IHistory> = [];
+  storedHistoryOverflow: Array<IHistory> = [];
+  storedHistoryOverflowTwo: Array<IHistory> = [];
+
+  resultSymbolsArray = ['Лв.', '$', '₪', '₽', 'Can$', '$', '₱', 'Fr.', 'A$', '¥',
+    '₺', 'HK$', 'RM', 'kn', 'Kč', 'Rp', 'Kr.', 'kr', 'Ft', '£',
+    'Mex$', '฿', 'Íkr', 'R', 'R$', 'S$', 'zł', '₹', '₩', 'lei', '¥', 'kr', '€'];
 
 
   constructor(private api: ApiService) { }
@@ -83,7 +88,7 @@ export class MainframeService {
 
 
     } else {
-      this.dataLoad()
+      this.dataLoad();
     }
   }
   // Initializes all the data we need. Only runs if conditions above are met.
@@ -95,7 +100,7 @@ export class MainframeService {
     this.conversionLabels = await Object.keys(this.api.currencyList[0].rates);
     this.currentCountry = await this.api.currencyList[0];
     this.rates = await this.api.currencyList[0].rates;
-    console.log('loadData')
+    console.log('loadData');
   }
 
 
@@ -105,7 +110,26 @@ export class MainframeService {
     this.conversionLabels = await Object.keys(this.api.localList[0].rates);
     this.currentCountry = await this.api.localList[0];
     this.rates = await this.api.localList[0].rates;
-    console.log(this.api.currencyList)
+    console.log(this.api.currencyList);
 
   }
+
+  restoreHistory() {
+    if (this.storedHistory.length === 0) {
+      alert('No history to restore!');
+  } else {
+    this.history = this.storedHistory;
+    this.historyOverflow = this.storedHistoryOverflow;
+    this.historyOverflowTwo = this.storedHistoryOverflowTwo;
+  }
+}
+
+logoutHistory() {
+  this.storedHistory = this.history;
+  this.storedHistoryOverflow = this.historyOverflow;
+  this.storedHistoryOverflowTwo = this.historyOverflowTwo;
+  this.history = [];
+  this.historyOverflow = [];
+  this.historyOverflowTwo = [];
+}
 }
